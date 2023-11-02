@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d06x40l1epb15"]
+[gd_scene load_steps=8 format=3 uid="uid://d06x40l1epb15"]
 
 [ext_resource type="Texture2D" uid="uid://0yyxcu281gw" path="res://Assets/Sprites/Sprite-0001.png" id="1_jkaua"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_li8pp"]
+[ext_resource type="PackedScene" uid="uid://b5pfhg4sii5g8" path="res://Scenes/gun.tscn" id="3_c8h7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnon7"]
 size = Vector2(15, 16)
@@ -134,3 +135,6 @@ shape = SubResource("RectangleShape2D_nnon7")
 libraries = {
 "": SubResource("AnimationLibrary_tfs1x")
 }
+
+[node name="Gun" parent="." instance=ExtResource("3_c8h7p")]
+position = Vector2(2, 4)

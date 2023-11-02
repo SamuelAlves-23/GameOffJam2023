@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://d36mvp3dp6sff" path="res://Assets/Sprites/weapon.png" id="1_p8ywy"]
 
 [node name="Gun" type="Node2D"]
-position = Vector2(0, -2)
 script = ExtResource("1_02ylc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
 texture = ExtResource("1_p8ywy")

@@ -33,6 +33,6 @@ func _physics_process(delta):
 	if direction != 0:
 		sprite.flip_h = (direction == -1)
 	
-	if animationPlayer.animation_finished:
-		animationPlayer.stop()
+#	if animationPlayer.animation_finished:
+#		animationPlayer.stop()
 	move_and_slide()

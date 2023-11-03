@@ -11,4 +11,7 @@ script = ExtResource("1_02ylc")
 [node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
 texture = ExtResource("1_p8ywy")
 
+[node name="BulletPosition" type="Marker2D" parent="."]
+position = Vector2(12, -0.5)
+
 [node name="BulletContainer" type="Node" parent="."]

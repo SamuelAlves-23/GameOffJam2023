@@ -1,0 +1,140 @@
+[gd_scene load_steps=8 format=3 uid="uid://d06x40l1epb15"]
+
+[ext_resource type="Texture2D" uid="uid://0yyxcu281gw" path="res://Assets/Sprites/Sprite-0001.png" id="1_jkaua"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_li8pp"]
+[ext_resource type="PackedScene" uid="uid://b5pfhg4sii5g8" path="res://Scenes/gun.tscn" id="3_c8h7p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnon7"]
+size = Vector2(15, 16)
+
+[sub_resource type="Animation" id="Animation_wxrg8"]
+resource_name = "Move"
+length = 0.3
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, -1), Vector2(2, -1), Vector2(3, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0174533, 0.0349066, 0.0523599]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0), Vector2(1.5, -1), Vector2(2.5, -1), Vector2(3.5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0174533, 0.0349066, 0.0523599]
+}
+
+[sub_resource type="Animation" id="Animation_v6e83"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0174533]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, -1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0174533]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tfs1x"]
+_data = {
+"Move": SubResource("Animation_wxrg8"),
+"RESET": SubResource("Animation_v6e83")
+}
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -16)
+script = ExtResource("1_li8pp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
+rotation = 0.0174533
+texture = ExtResource("1_jkaua")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -1)
+rotation = 0.0174533
+shape = SubResource("RectangleShape2D_nnon7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tfs1x")
+}
+
+[node name="Gun" parent="." instance=ExtResource("3_c8h7p")]
+position = Vector2(2, 4)

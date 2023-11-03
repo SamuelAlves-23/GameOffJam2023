@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://c387xp0215red"]
+
+[ext_resource type="Texture2D" uid="uid://cl3yg47pv1te8" path="res://Assets/Sprites/enemy_02.png" id="1_mm73t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhiff"]
+size = Vector2(8, 14)
+
+[sub_resource type="Animation" id="Animation_bckqf"]
+resource_name = "movement"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 9), Vector2(0, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_m2euq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k1gui"]
+_data = {
+"RESET": SubResource("Animation_m2euq"),
+"movement": SubResource("Animation_bckqf")
+}
+
+[node name="Enemy" type="Area2D"]
+position = Vector2(0, -16)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mm73t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_dhiff")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "movement"
+libraries = {
+"": SubResource("AnimationLibrary_k1gui")
+}

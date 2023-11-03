@@ -10,3 +10,5 @@ script = ExtResource("1_02ylc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
 texture = ExtResource("1_p8ywy")
+
+[node name="BulletContainer" type="Node" parent="."]

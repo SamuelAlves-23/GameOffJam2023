@@ -36,7 +36,7 @@ func _physics_process(delta):
 		
 		if Input.is_action_just_pressed("shoot"):
 			gun.shoot()
-			recoil(delta, gun.scale)
+			#recoil(delta, gun.scale)
 	
 	direction = get_viewport().get_mouse_position().x
 	if direction != 0:

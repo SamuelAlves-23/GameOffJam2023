@@ -1,17 +1,26 @@
-extends Area2D
-
-#signal damaged
+extends CharacterBody2D
 
 @onready var health_controller = $HealthController
 @onready var collision_shape = $CollisionShape2D
-# Called when the node enters the scene tree for the first time.
+@onready var sprite = $Sprite2D
+@onready var hitbox = $Area2D
+@onready var player
+
+@export var ACCELERATION = 300
+@export var MAX_SPEED = 20
+@export var FRICTION = 200
+
 func _ready():
-	pass # Replace with function body.
+	player = get_tree().get_first_node_in_group("Player")
 
 func take_damage(damage):
-#	emit_signal("damaged")
 	health_controller.take_damage(damage)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _physics_process(delta):
+	velocity= velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+
+	var direction = (player.global_position - global_position).normalized()
+	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+	sprite.flip_h = velocity.x > 0
+
+	move_and_slide()

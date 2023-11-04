@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c387xp0215red"]
+[gd_scene load_steps=9 format=3 uid="uid://c387xp0215red"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_3aiqp"]
 [ext_resource type="Texture2D" uid="uid://cl3yg47pv1te8" path="res://Assets/Sprites/enemy_02.png" id="1_mm73t"]
 [ext_resource type="PackedScene" uid="uid://cowl2mu74e3ng" path="res://Scenes/health_controller.tscn" id="2_skarv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhiff"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkxd6"]
 size = Vector2(8, 14)
 
 [sub_resource type="Animation" id="Animation_m2euq"]
@@ -69,18 +69,25 @@ _data = {
 "movement": SubResource("Animation_bckqf")
 }
 
-[node name="Enemy" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhiff"]
+size = Vector2(6, 12)
+
+[node name="Enemy" type="CharacterBody2D"]
 position = Vector2(0, -16)
-collision_layer = 4
-collision_mask = 10
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_3aiqp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_mm73t")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 9)
-shape = SubResource("RectangleShape2D_dhiff")
+shape = SubResource("RectangleShape2D_tkxd6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "movement"
@@ -90,3 +97,7 @@ libraries = {
 
 [node name="HealthController" parent="." instance=ExtResource("2_skarv")]
 health = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_dhiff")

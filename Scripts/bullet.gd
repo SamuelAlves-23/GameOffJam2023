@@ -21,4 +21,6 @@ func change_bullet_size(variation):
 
 func _on_area_entered(area):
 	queue_free()
-	area.take_damage(scale.x * 10)
+	print("Entra")
+	area.get_parent().take_damage(scale.x * 10)
+#	area.take_damage(scale.x * 10)

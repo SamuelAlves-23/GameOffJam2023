@@ -3,9 +3,11 @@ class_name Player
 
 enum {
 	MOVE,
-	RECOIL
+	RECOIL,
+	HIT
 }
 var state = MOVE
+var damage_recoil_vector
 var recoil_vector = Vector2.DOWN
 
 @export var ACCELERATION = 500
@@ -18,6 +20,7 @@ var recoil_vector = Vector2.DOWN
 @onready var animationPlayer = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var gun = $Gun
+@onready var health_controller = $HealthController
 @export var size_variation = Vector2(0.5,0.5)
 
 func _process(delta):
@@ -30,6 +33,8 @@ func _process(delta):
 			move_state(delta)
 		RECOIL:
 			recoil_state(delta, gun.scale)
+		HIT:
+			hit_state(delta)
 
 func move_state(delta):
 	var direction = get_viewport().get_mouse_position().x
@@ -39,7 +44,7 @@ func move_state(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
-		animationPlayer.play("Move")
+#		animationPlayer.play("Move")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -66,3 +71,16 @@ func recoil_state(delta, gun_scale):
 	animationPlayer.stop()
 	move_and_slide()
 	state = MOVE
+
+func hit_state(delta):
+	velocity = RECOIL_SPEED * damage_recoil_vector * delta * 3
+	move_and_slide()
+	state = MOVE
+
+func _on_hurtbox_area_entered(area):
+	var current_pos = global_position
+	damage_recoil_vector = -(area.global_position - current_pos)
+	damage_recoil_vector = damage_recoil_vector.normalized()
+	health_controller.take_damage(area.damage)
+	state = HIT
+	

@@ -7,12 +7,17 @@ extends CharacterBody2D
 @export var ACCELERATION = 300
 @export var MAX_SPEED = 20
 @export var FRICTION = 200
+@export var damage = 1
 
-func take_damage(damage):
-	health_controller.take_damage(damage)
 
 func _physics_process(delta):
 	var direction = (player.global_position - global_position).normalized()
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	sprite.flip_h = velocity.x > 0
 	move_and_slide()
+
+
+func _on_hurtbox_area_entered(area):
+	print("Entra")
+	health_controller.take_damage(area.damage)
+

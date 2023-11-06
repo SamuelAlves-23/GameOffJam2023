@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Enemy
 
 @onready var health_controller = $HealthController
 @onready var sprite = $Sprite2D

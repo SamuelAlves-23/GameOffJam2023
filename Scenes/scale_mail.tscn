@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsmvxxqnaa0as"]
+
+[ext_resource type="Texture2D" uid="uid://djmfdt5874o2b" path="res://Assets/Sprites/mail.png" id="1_lvwjf"]
+[ext_resource type="Script" path="res://Scripts/pickable.gd" id="1_nfgmo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0x6pq"]
+size = Vector2(10, 12)
+
+[node name="ScaleMail" type="Area2D"]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("1_nfgmo")
+item_name = "MAIL"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -13)
+texture = ExtResource("1_lvwjf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_0x6pq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

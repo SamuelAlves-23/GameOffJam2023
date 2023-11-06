@@ -2,11 +2,17 @@ extends CharacterBody2D
 class_name Player
 
 enum {
+	NONE,
+	MAIL
+}
+
+enum {
 	MOVE,
 	RECOIL,
 	HIT
 }
 var state = MOVE
+var item_equipped = NONE
 var damage_recoil_vector
 var recoil_vector = Vector2.DOWN
 
@@ -81,6 +87,10 @@ func _on_hurtbox_area_entered(area):
 	var current_pos = global_position
 	damage_recoil_vector = -(area.global_position - current_pos)
 	damage_recoil_vector = damage_recoil_vector.normalized()
-	health_controller.take_damage(area.damage)
+	if item_equipped == MAIL:
+		print("Funciona")
+		item_equipped = NONE
+	else:
+		health_controller.take_damage(area.damage)
+	print(health_controller.health)
 	state = HIT
-	

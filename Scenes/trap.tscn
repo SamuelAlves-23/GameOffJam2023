@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bag261lg2cesu"]
+
+[ext_resource type="Texture2D" uid="uid://d3n10tttqkhgc" path="res://Assets/Sprites/trap_001.png" id="2_xkgun"]
+[ext_resource type="PackedScene" uid="uid://c210hg6cguya3" path="res://Scenes/hitbox.tscn" id="3_akqst"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjq0h"]
+size = Vector2(29, 21)
+
+[node name="Trap" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xkgun")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_akqst")]
+collision_layer = 128
+collision_mask = 48
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-0.5, 5.5)
+shape = SubResource("RectangleShape2D_wjq0h")
+
+[editable path="Hitbox"]

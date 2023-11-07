@@ -1,20 +1,24 @@
 extends CharacterBody2D
 class_name Player
 
-enum {
-	NONE,
-	MAIL
-}
+#enum  PICKABLES{
+#	NONE,
+#	MAIL
+#}
 
-enum {
+enum PLAYER_STATES{
 	MOVE,
 	RECOIL,
 	HIT
 }
-var state = MOVE
-var item_equipped = NONE
+const pickables = ["NONE", "MAIL"]
+var state = PLAYER_STATES.MOVE
+var item_equipped = "NONE"
 var damage_recoil_vector
 var recoil_vector = Vector2.DOWN
+
+# PICKABLES
+var mail_equipped = false
 
 @export var ACCELERATION = 500
 @export var MAX_SPEED = 123
@@ -35,11 +39,11 @@ func _process(delta):
 		sprite.flip_h = (direction < self.global_position.x)
 	
 	match state:
-		MOVE:
+		PLAYER_STATES.MOVE:
 			move_state(delta)
-		RECOIL:
+		PLAYER_STATES.RECOIL:
 			recoil_state(delta, gun.scale)
-		HIT:
+		PLAYER_STATES.HIT:
 			hit_state(delta)
 
 func move_state(delta):
@@ -64,7 +68,7 @@ func move_state(delta):
 	if Input.is_action_pressed("shoot") && !gun_cd:
 		gun.shoot()
 		if gun.scale > Vector2.ONE:
-			state = RECOIL
+			state = PLAYER_STATES.RECOIL
 		gun_cd = true
 		await get_tree().create_timer(gun.scale.x - 0.25).timeout
 		gun_cd = false
@@ -76,21 +80,21 @@ func recoil_state(delta, gun_scale):
 	velocity = RECOIL_SPEED * recoil_vector * delta * gun_scale
 	animationPlayer.stop()
 	move_and_slide()
-	state = MOVE
+	state = PLAYER_STATES.MOVE
 
 func hit_state(delta):
 	velocity = RECOIL_SPEED * damage_recoil_vector * delta * 3
 	move_and_slide()
-	state = MOVE
+	state = PLAYER_STATES.MOVE
 
 func _on_hurtbox_area_entered(area):
 	var current_pos = global_position
 	damage_recoil_vector = -(area.global_position - current_pos)
 	damage_recoil_vector = damage_recoil_vector.normalized()
-	if item_equipped == MAIL:
+	if item_equipped == "MAIL":
 		print("Funciona")
-		item_equipped = NONE
+		item_equipped = "NONE"
 	else:
 		health_controller.take_damage(area.damage)
 	print(health_controller.health)
-	state = HIT
+	state = PLAYER_STATES.HIT

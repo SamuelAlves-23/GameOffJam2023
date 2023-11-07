@@ -8,7 +8,6 @@ class_name Enemy
 @export var ACCELERATION = 300
 @export var MAX_SPEED = 20
 @export var FRICTION = 200
-@export var damage = 1
 
 
 func _physics_process(delta):

@@ -74,6 +74,7 @@ decrease_bullet_size={
 2d_physics/layer_5="playerHurtbox"
 2d_physics/layer_6="enemyHurtbox"
 2d_physics/layer_7="pickables"
+2d_physics/layer_8="traps"
 
 [rendering]
 

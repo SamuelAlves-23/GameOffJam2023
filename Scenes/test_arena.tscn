@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c617rvdiwajlq"]
+[gd_scene load_steps=6 format=3 uid="uid://c617rvdiwajlq"]
 
 [ext_resource type="PackedScene" uid="uid://d06x40l1epb15" path="res://Scenes/player.tscn" id="1_sa2ya"]
 [ext_resource type="PackedScene" uid="uid://c387xp0215red" path="res://Scenes/enemy.tscn" id="2_l16cp"]
 [ext_resource type="PackedScene" uid="uid://dsmvxxqnaa0as" path="res://Scenes/scale_mail.tscn" id="3_gnne6"]
+[ext_resource type="PackedScene" uid="uid://b2v80o21uqddt" path="res://Scenes/timer_controller.tscn" id="4_4lupm"]
+[ext_resource type="PackedScene" uid="uid://bag261lg2cesu" path="res://Scenes/trap.tscn" id="5_ci8kv"]
 
 [node name="TestArena" type="Node2D"]
 
@@ -14,3 +16,9 @@ position = Vector2(393, 124)
 
 [node name="ScaleMail" parent="." instance=ExtResource("3_gnne6")]
 position = Vector2(276, 78)
+
+[node name="TimerController" parent="." instance=ExtResource("4_4lupm")]
+wait_time = 60.0
+
+[node name="Trap" parent="." instance=ExtResource("5_ci8kv")]
+position = Vector2(194, 201)

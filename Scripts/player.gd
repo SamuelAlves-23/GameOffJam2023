@@ -5,6 +5,7 @@ enum PLAYER_STATES{
 	MOVE,
 	RECOIL,
 	HIT,
+	DASH,
 	DEATH
 }
 const pickables = ["NONE", "MAIL"]
@@ -12,6 +13,7 @@ var item_equipped = "NONE"
 var state = PLAYER_STATES.MOVE
 var damage_recoil_vector
 var recoil_vector = Vector2.DOWN
+var input_vector = Vector2.ZERO
 
 # PICKABLES
 var mail_equipped = false
@@ -21,7 +23,9 @@ var mail_equipped = false
 @export var RECOIL_SPEED = 10000
 @export var FRICTION  = 500
 @export var speed = 100.0
+@export var dash_speed = 2
 @export var gun_cd = false
+@export var dash_cd = false
 @export var size_variation = Vector2(0.5,0.5)
 
 @onready var animationPlayer = $AnimationPlayer
@@ -43,6 +47,8 @@ func _process(delta):
 			recoil_state(delta, gun.scale)
 		PLAYER_STATES.HIT:
 			hit_state(delta)
+		PLAYER_STATES.DASH:
+			dash_state(delta)
 		PLAYER_STATES.DEATH:
 			sprite.visible = false
 			gun.visible = false 
@@ -50,7 +56,7 @@ func _process(delta):
 
 func move_state(delta):
 	var direction = get_viewport().get_mouse_position().x
-	var input_vector = Vector2.ZERO
+	input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
@@ -61,7 +67,8 @@ func move_state(delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	move_and_slide()
-	
+	if Input.is_action_just_pressed("dash") && !dash_cd:
+		state = PLAYER_STATES.DASH
 	if Input.is_action_just_pressed("increase_bullet_size"):
 		gun.change_gun_size(size_variation)
 	if Input.is_action_just_pressed("decrease_bullet_size"):
@@ -83,6 +90,14 @@ func recoil_state(delta, gun_scale):
 	animationPlayer.stop()
 	move_and_slide()
 	state = PLAYER_STATES.MOVE
+
+func dash_state(delta):
+	velocity = RECOIL_SPEED * input_vector * delta * dash_speed
+	move_and_slide()
+	state = PLAYER_STATES.MOVE
+	dash_cd = true
+	await get_tree().create_timer(3).timeout
+	dash_cd = false
 
 func hit_state(delta):
 	velocity = RECOIL_SPEED * damage_recoil_vector * delta * 3

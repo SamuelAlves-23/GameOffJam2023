@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://5pcy0o0ca5iy"]
+
+[ext_resource type="Script" path="res://Scripts/mob_spawner.gd" id="1_ygunc"]
+
+[node name="MobSpawner" type="Node2D"]
+script = ExtResource("1_ygunc")
+
+[node name="MobContainer" type="Node" parent="."]
+
+[node name="SpawnContainer" type="Node" parent="."]
+
+[node name="Spawn_01" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(246, 23)
+
+[node name="Spawn_02" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(410, 59)
+
+[node name="Spawn_03" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(399, 224)
+
+[node name="Spawn_04" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(82, 221)
+
+[node name="Spawn_05" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(59, 51)

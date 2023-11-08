@@ -2,6 +2,7 @@ extends Node2D
 
 @export var spawn_time = 1
 
+@onready var spawn_active = true
 @onready var spawn_cd = false
 @onready var spawn_points = []
 @onready var mob_container = $MobContainer
@@ -16,7 +17,7 @@ func _ready():
 
 
 func _process(_delta):
-	if !spawn_cd:
+	if !spawn_cd && spawn_active:
 		spawn_enemy(enemy_01)
 		spawn_cd = true
 		await get_tree().create_timer(spawn_time).timeout

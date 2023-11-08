@@ -1,19 +1,15 @@
 extends CharacterBody2D
 class_name Player
 
-#enum  PICKABLES{
-#	NONE,
-#	MAIL
-#}
-
 enum PLAYER_STATES{
 	MOVE,
 	RECOIL,
-	HIT
+	HIT,
+	DEATH
 }
 const pickables = ["NONE", "MAIL"]
-var state = PLAYER_STATES.MOVE
 var item_equipped = "NONE"
+var state = PLAYER_STATES.MOVE
 var damage_recoil_vector
 var recoil_vector = Vector2.DOWN
 
@@ -26,12 +22,14 @@ var mail_equipped = false
 @export var FRICTION  = 500
 @export var speed = 100.0
 @export var gun_cd = false
+@export var size_variation = Vector2(0.5,0.5)
 
 @onready var animationPlayer = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var gun = $Gun
 @onready var health_controller = $HealthController
-@export var size_variation = Vector2(0.5,0.5)
+@onready var collision = $CollisionShape2D
+@onready var hurtbox_collider = $Hurtbox/CollisionShape2D
 
 func _process(delta):
 	var direction = get_viewport().get_mouse_position().x
@@ -45,6 +43,10 @@ func _process(delta):
 			recoil_state(delta, gun.scale)
 		PLAYER_STATES.HIT:
 			hit_state(delta)
+		PLAYER_STATES.DEATH:
+			sprite.visible = false
+			gun.visible = false 
+			
 
 func move_state(delta):
 	var direction = get_viewport().get_mouse_position().x
@@ -88,13 +90,17 @@ func hit_state(delta):
 	state = PLAYER_STATES.MOVE
 
 func _on_hurtbox_area_entered(area):
-	var current_pos = global_position
-	damage_recoil_vector = -(area.global_position - current_pos)
-	damage_recoil_vector = damage_recoil_vector.normalized()
-	if item_equipped == "MAIL":
-		print("Funciona")
-		item_equipped = "NONE"
-	else:
-		health_controller.take_damage(area.damage)
-	print(health_controller.health)
-	state = PLAYER_STATES.HIT
+	if state != PLAYER_STATES.DEATH:
+		var current_pos = global_position
+		damage_recoil_vector = -(area.global_position - current_pos)
+		damage_recoil_vector = damage_recoil_vector.normalized()
+		if item_equipped == "MAIL":
+			print("Funciona")
+			item_equipped = "NONE"
+		else:
+			health_controller.take_damage(area.damage)
+		print(health_controller.health)
+		if health_controller.health <= 0:
+			state = PLAYER_STATES.DEATH
+		else:
+			state = PLAYER_STATES.HIT

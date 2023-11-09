@@ -1,13 +1,13 @@
 extends Node2D
 
 @export var spawn_time = 1
+@export var spawn_active = true
 
-@onready var spawn_active = true
 @onready var spawn_cd = false
 @onready var spawn_points = []
 @onready var mob_container = $MobContainer
 @onready var spawn_container = $SpawnContainer
-@onready var enemy_01 = preload("res://Scenes/enemy.tscn")
+@onready var enemy_01 = preload("res://Scenes/minion_enemy.tscn")
 
 
 func _ready():

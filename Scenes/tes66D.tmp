@@ -14,7 +14,6 @@ script = ExtResource("1_swf3l")
 
 [node name="Player" parent="." instance=ExtResource("1_sa2ya")]
 position = Vector2(252, 127)
-dash_guard = true
 
 [node name="ScaleMail" parent="." instance=ExtResource("3_gnne6")]
 position = Vector2(276, 78)
@@ -39,7 +38,7 @@ grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="MobSpawner" parent="." instance=ExtResource("7_ajnju")]
-spawn_active = false
+visible = false
 
 [node name="ShieldEnemy" parent="." instance=ExtResource("8_a0bjg")]
 position = Vector2(356, 163)

@@ -23,7 +23,9 @@ var mail_equipped = false
 @export var RECOIL_SPEED = 10000
 @export var FRICTION  = 500
 @export var speed = 100.0
-@export var dash_speed = 2
+@export var dash_speed = 6
+@export var dash_damage = 30
+@export var dash_guard = false
 @export var gun_cd = false
 @export var dash_cd = false
 @export var size_variation = Vector2(0.5,0.5)
@@ -56,7 +58,7 @@ func _process(delta):
 
 func move_state(delta):
 	var direction = get_viewport().get_mouse_position().x
-	input_vector = Vector2.ZERO
+#	input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
@@ -93,6 +95,8 @@ func recoil_state(delta, gun_scale):
 
 func dash_state(delta):
 	velocity = RECOIL_SPEED * input_vector * delta * dash_speed
+	animationPlayer.play("Dash")
+	
 	move_and_slide()
 	state = PLAYER_STATES.MOVE
 	dash_cd = true
@@ -110,7 +114,6 @@ func _on_hurtbox_area_entered(area):
 		damage_recoil_vector = -(area.global_position - current_pos)
 		damage_recoil_vector = damage_recoil_vector.normalized()
 		if item_equipped == "MAIL":
-			print("Funciona")
 			item_equipped = "NONE"
 		else:
 			health_controller.take_damage(area.damage)

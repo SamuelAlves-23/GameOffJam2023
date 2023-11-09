@@ -21,15 +21,12 @@ func _physics_process(delta):
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	sprite.flip_h = velocity.x > 0
 	
-	if enemy_type == ENEMY_TYPES.SHIELD:
-		pass
-	
 	move_and_slide()
 
 
 func _on_hurtbox_area_entered(area):
 	if enemy_type == ENEMY_TYPES.SHIELD && guarded:
-		if area.dash_dmg_enabled:
+		if area.get_parent().dash_guard:
 			guarded = false
 			print(guarded)
 	else:

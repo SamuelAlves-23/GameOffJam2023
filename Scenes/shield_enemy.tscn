@@ -113,7 +113,7 @@ shape = SubResource("RectangleShape2D_dhiff")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_exmhu")]
 collision_layer = 32
-collision_mask = 9
+collision_mask = 25
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-0.5, -4.5)

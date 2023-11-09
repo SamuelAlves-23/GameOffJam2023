@@ -24,7 +24,7 @@ var mail_equipped = false
 @export var FRICTION  = 500
 @export var speed = 100.0
 @export var dash_speed = 6
-@export var dash_damage = 30
+@export var damage = 30
 @export var dash_guard = false
 @export var gun_cd = false
 @export var dash_cd = false
@@ -94,7 +94,7 @@ func recoil_state(delta, gun_scale):
 	state = PLAYER_STATES.MOVE
 
 func dash_state(delta):
-	velocity = RECOIL_SPEED * input_vector * delta * dash_speed
+	velocity = RECOIL_SPEED * input_vector * delta
 	animationPlayer.play("Dash")
 	
 	move_and_slide()
@@ -109,7 +109,7 @@ func hit_state(delta):
 	state = PLAYER_STATES.MOVE
 
 func _on_hurtbox_area_entered(area):
-	if state != PLAYER_STATES.DEATH:
+	if state != PLAYER_STATES.DEATH || !dash_guard:
 		var current_pos = global_position
 		damage_recoil_vector = -(area.global_position - current_pos)
 		damage_recoil_vector = damage_recoil_vector.normalized()

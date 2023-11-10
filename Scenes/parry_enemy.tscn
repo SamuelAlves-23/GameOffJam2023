@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c387xp0215red"]
+[gd_scene load_steps=13 format=3 uid="uid://de1wkkymeof8e"]
 
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_6m3ak"]
-[ext_resource type="Texture2D" uid="uid://cl3yg47pv1te8" path="res://Assets/Sprites/enemy_02.png" id="2_vsg80"]
-[ext_resource type="PackedScene" uid="uid://cowl2mu74e3ng" path="res://Scenes/health_controller.tscn" id="3_eqste"]
-[ext_resource type="PackedScene" uid="uid://kbfhtgtgpfpl" path="res://Scenes/hurtbox.tscn" id="4_fekkv"]
-[ext_resource type="PackedScene" uid="uid://c210hg6cguya3" path="res://Scenes/hitbox.tscn" id="5_stixs"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_rowoe"]
+[ext_resource type="Texture2D" uid="uid://c6168nxdyg4r5" path="res://Assets/Sprites/parry_enemy.png" id="2_lno1k"]
+[ext_resource type="PackedScene" uid="uid://cowl2mu74e3ng" path="res://Scenes/health_controller.tscn" id="3_cv7rg"]
+[ext_resource type="PackedScene" uid="uid://kbfhtgtgpfpl" path="res://Scenes/hurtbox.tscn" id="4_epyl7"]
+[ext_resource type="PackedScene" uid="uid://c210hg6cguya3" path="res://Scenes/hitbox.tscn" id="5_aog2w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkxd6"]
 size = Vector2(8, 14)
@@ -75,18 +75,19 @@ _data = {
 size = Vector2(6, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5m1i"]
-size = Vector2(8, 14)
+size = Vector2(20, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34udr"]
-size = Vector2(8, 12)
+size = Vector2(17, 7)
 
-[node name="MinionEnemy" type="CharacterBody2D"]
+[node name="ParryEnemy" type="CharacterBody2D"]
 position = Vector2(0, -16)
 collision_layer = 0
-script = ExtResource("1_6m3ak")
+script = ExtResource("1_rowoe")
+enemy_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_vsg80")
+texture = ExtResource("2_lno1k")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -103,27 +104,27 @@ libraries = {
 "": SubResource("AnimationLibrary_k1gui")
 }
 
-[node name="HealthController" parent="." instance=ExtResource("3_eqste")]
+[node name="HealthController" parent="." instance=ExtResource("3_cv7rg")]
 health = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_dhiff")
 
-[node name="Hurtbox" parent="." instance=ExtResource("4_fekkv")]
+[node name="Hurtbox" parent="." instance=ExtResource("4_epyl7")]
 collision_layer = 32
 collision_mask = 9
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(0, 9)
+position = Vector2(-2, 1.5)
 shape = SubResource("RectangleShape2D_s5m1i")
 
-[node name="Hitbox" parent="." instance=ExtResource("5_stixs")]
+[node name="Hitbox" parent="." instance=ExtResource("5_aog2w")]
 collision_layer = 4
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(0, 10)
+position = Vector2(0.5, 11.5)
 shape = SubResource("RectangleShape2D_34udr")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

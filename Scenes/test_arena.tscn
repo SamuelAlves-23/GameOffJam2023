@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bag261lg2cesu" path="res://Scenes/trap.tscn" id="5_ci8kv"]
 [ext_resource type="PackedScene" uid="uid://b8cwo4qpfris7" path="res://Scenes/death_screen.tscn" id="6_ndalw"]
 [ext_resource type="PackedScene" uid="uid://5pcy0o0ca5iy" path="res://Scenes/mob_spawner.tscn" id="7_ajnju"]
-[ext_resource type="PackedScene" uid="uid://dgb4040giivli" path="res://Scenes/shield_enemy.tscn" id="8_a0bjg"]
+[ext_resource type="PackedScene" uid="uid://de1wkkymeof8e" path="res://Scenes/parry_enemy.tscn" id="8_cnjmi"]
 
 [node name="TestArena" type="Node2D"]
 script = ExtResource("1_swf3l")
@@ -40,5 +40,5 @@ metadata/_edit_use_anchors_ = true
 [node name="MobSpawner" parent="." instance=ExtResource("7_ajnju")]
 spawn_active = false
 
-[node name="ShieldEnemy" parent="." instance=ExtResource("8_a0bjg")]
-position = Vector2(356, 163)
+[node name="ParryEnemy" parent="." instance=ExtResource("8_cnjmi")]
+position = Vector2(367, 116)

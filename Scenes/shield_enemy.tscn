@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgb4040giivli"]
+[gd_scene load_steps=14 format=3 uid="uid://dgb4040giivli"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_l44cr"]
 [ext_resource type="Texture2D" uid="uid://be4bd8dovddqh" path="res://Assets/Sprites/Shield_enemy_guarded.png" id="2_8clp7"]
+[ext_resource type="Texture2D" uid="uid://bn28fub7ips7g" path="res://Assets/Sprites/Shield_enemy.png" id="2_ltcho"]
 [ext_resource type="PackedScene" uid="uid://cowl2mu74e3ng" path="res://Scenes/health_controller.tscn" id="3_0y4jv"]
 [ext_resource type="PackedScene" uid="uid://kbfhtgtgpfpl" path="res://Scenes/hurtbox.tscn" id="4_exmhu"]
 [ext_resource type="PackedScene" uid="uid://c210hg6cguya3" path="res://Scenes/hitbox.tscn" id="5_v2e36"]
@@ -87,7 +88,8 @@ script = ExtResource("1_l44cr")
 enemy_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_8clp7")
+visible = false
+texture = ExtResource("2_ltcho")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -113,7 +115,7 @@ shape = SubResource("RectangleShape2D_dhiff")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_exmhu")]
 collision_layer = 32
-collision_mask = 25
+collision_mask = 9
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-0.5, -4.5)
@@ -126,6 +128,9 @@ collision_mask = 16
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-0.5, 9.5)
 shape = SubResource("RectangleShape2D_34udr")
+
+[node name="GuardedSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_8clp7")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 

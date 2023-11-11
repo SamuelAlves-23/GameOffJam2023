@@ -4,11 +4,13 @@ class_name Enemy
 enum ENEMY_TYPES{
 	MINION,
 	SHIELD,
-	PARRY
+	PARRY,
+	GUN
 }
 enum ENEMY_STATES{
 	CHASE,
-	DASH
+	DASH,
+	SHOOT
 }
 
 var guarded_sprite
@@ -21,6 +23,9 @@ var guarded_sprite
 @onready var guard_life = 20
 @onready var dash_speed = 120
 @onready var dash_vector = Vector2.DOWN
+@onready var gun_cd = false
+@onready var bullet_scene = preload("res://Scenes/enemy_bullet.tscn")
+@onready var bulletContainer = $BulletContainer
 
 @export var enemy_type = ENEMY_TYPES.MINION
 @export var ACCELERATION = 300
@@ -37,13 +42,28 @@ func _physics_process(delta):
 			chase_state(delta)
 		ENEMY_STATES.DASH:
 			dash_state(delta)
+		ENEMY_STATES.SHOOT:
+			shoot_state(delta)
 
 func chase_state(delta):
 	var direction = (player.global_position - global_position).normalized()
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	sprite.flip_h = velocity.x > 0
-	
+	if enemy_type == ENEMY_TYPES.GUN && !gun_cd:
+		state = ENEMY_STATES.SHOOT
 	move_and_slide()
+
+func shoot_state(delta):
+	var bullet = bullet_scene.instantiate()
+	bullet.damage_multiplier = 1
+	bulletContainer.add_child(bullet)
+	bullet.global_position = global_position
+	var current_pos = bullet.global_position
+	bullet.direction = (player.global_position - global_position).normalized()
+	state = ENEMY_STATES.CHASE
+	gun_cd = true
+	await get_tree().create_timer(2.5).timeout
+	gun_cd = false
 
 func dash_state(delta):
 	var direction = (player.global_position - global_position).normalized()

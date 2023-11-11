@@ -3,7 +3,7 @@ extends Node2D
 @export var level_time = 120
 
 @onready var score = 0
-@onready var death_screen = $DeathScreen
+@onready var death_screen = $UILayer/DeathScreen
 @onready var mob_spawner = $MobSpawner
 @onready var player = $Player
 @onready var hud = $UILayer/HUD

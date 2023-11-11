@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c617rvdiwajlq"]
+[gd_scene load_steps=8 format=3 uid="uid://c617rvdiwajlq"]
 
 [ext_resource type="PackedScene" uid="uid://d06x40l1epb15" path="res://Scenes/player.tscn" id="1_sa2ya"]
 [ext_resource type="Script" path="res://Scripts/arenaController.gd" id="1_swf3l"]
 [ext_resource type="PackedScene" uid="uid://dsmvxxqnaa0as" path="res://Scenes/scale_mail.tscn" id="3_gnne6"]
 [ext_resource type="PackedScene" uid="uid://bag261lg2cesu" path="res://Scenes/trap.tscn" id="5_ci8kv"]
-[ext_resource type="PackedScene" uid="uid://b8cwo4qpfris7" path="res://Scenes/death_screen.tscn" id="6_ndalw"]
 [ext_resource type="PackedScene" uid="uid://5pcy0o0ca5iy" path="res://Scenes/mob_spawner.tscn" id="7_ajnju"]
-[ext_resource type="PackedScene" uid="uid://de1wkkymeof8e" path="res://Scenes/parry_enemy.tscn" id="8_cnjmi"]
+[ext_resource type="PackedScene" uid="uid://cv7t8ohn4ahxm" path="res://Scenes/gun_enemy.tscn" id="8_cnmdr"]
 [ext_resource type="PackedScene" uid="uid://he8m26jokd53" path="res://Scenes/ui_layer.tscn" id="8_hg5xl"]
 
 [node name="TestArena" type="Node2D"]
@@ -21,23 +20,12 @@ position = Vector2(276, 78)
 [node name="Trap" parent="." instance=ExtResource("5_ci8kv")]
 position = Vector2(194, 201)
 
-[node name="DeathScreen" parent="." instance=ExtResource("6_ndalw")]
-visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 255.0
-offset_top = 151.0
-offset_right = 255.0
-offset_bottom = 151.0
-grow_horizontal = 1
-grow_vertical = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="MobSpawner" parent="." instance=ExtResource("7_ajnju")]
 spawn_active = false
 
-[node name="ParryEnemy" parent="." instance=ExtResource("8_cnjmi")]
-position = Vector2(367, 116)
-
 [node name="UILayer" parent="." instance=ExtResource("8_hg5xl")]
+
+[node name="GunEnemy" parent="." instance=ExtResource("8_cnmdr")]
+position = Vector2(349, 119)
+
+[editable path="UILayer"]

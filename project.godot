@@ -80,6 +80,7 @@ dash={
 2d_physics/layer_6="enemyHurtbox"
 2d_physics/layer_7="pickables"
 2d_physics/layer_8="traps"
+2d_physics/layer_9="enemyBullet"
 
 [rendering]
 

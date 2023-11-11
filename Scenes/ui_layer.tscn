@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://he8m26jokd53"]
+[gd_scene load_steps=3 format=3 uid="uid://he8m26jokd53"]
 
 [ext_resource type="PackedScene" uid="uid://byrhiaiowlx1w" path="res://Scenes/hud.tscn" id="1_aqlh7"]
+[ext_resource type="PackedScene" uid="uid://b8cwo4qpfris7" path="res://Scenes/death_screen.tscn" id="2_cdxvo"]
 
 [node name="UILayer" type="CanvasLayer"]
 
 [node name="HUD" parent="." instance=ExtResource("1_aqlh7")]
+
+[node name="DeathScreen" parent="." instance=ExtResource("2_cdxvo")]
+visible = false

@@ -1,13 +1,17 @@
 extends Area2D
+class_name Bullet
 @export var direction = Vector2.ZERO
 @export var speed = 600
+@export var vanish_time = 0.5
+@export var damage_multiplier = 10
 var damage 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	damage = scale.x * 10
+	damage = scale.x * damage_multiplier
+	print(damage)
 	translate(direction.normalized() * delta * speed)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(vanish_time).timeout
 	queue_free()
 
 

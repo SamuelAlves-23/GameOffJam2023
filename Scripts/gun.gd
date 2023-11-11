@@ -13,8 +13,7 @@ var current_spread = 0
 @onready var bullet = bullet_scene.instantiate()
 
 func _physics_process(delta):
-	rotate(get_angle_to(get_viewport().get_mouse_position()))
-	
+		rotate(get_angle_to(get_viewport().get_mouse_position()))
 
 func shoot():
 	var spread_degree_max = current_spread * 0.5

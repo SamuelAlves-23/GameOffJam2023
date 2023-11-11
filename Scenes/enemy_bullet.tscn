@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://de4iudq2iw6py"]
+
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_hkoex"]
+[ext_resource type="Texture2D" uid="uid://rnpaf5rxy1sv" path="res://Assets/Sprites/Bullet.png" id="2_eydud"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_084l2"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_mpehf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_q6ujn"]
+resource_name = "rotate"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 3
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 1.5708, 2.35619, 3.14159, 3.92699, 4.71239, 5.49779]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_044gv"]
+_data = {
+"RESET": SubResource("Animation_mpehf"),
+"rotate": SubResource("Animation_q6ujn")
+}
+
+[node name="EnemyBullet" type="Area2D"]
+collision_layer = 256
+collision_mask = 16
+script = ExtResource("1_hkoex")
+speed = 100
+vanish_time = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_eydud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_084l2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_044gv")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvdu41gvtqd7h"]
+
+[ext_resource type="Script" path="res://Scripts/final_boss.gd" id="1_gmit6"]
+[ext_resource type="Texture2D" uid="uid://b1trvj15y58wf" path="res://Assets/Sprites/finalBoss.png" id="1_woj8k"]
+[ext_resource type="PackedScene" uid="uid://kbfhtgtgpfpl" path="res://Scenes/hurtbox.tscn" id="2_6m40y"]
+[ext_resource type="PackedScene" uid="uid://c210hg6cguya3" path="res://Scenes/hitbox.tscn" id="3_jq0f1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfn0p"]
+radius = 12.0416
+
+[node name="FinalBoss" type="CharacterBody2D"]
+script = ExtResource("1_gmit6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_woj8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("CircleShape2D_gfn0p")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_6m40y")]
+
+[node name="Hitbox" parent="." instance=ExtResource("3_jq0f1")]

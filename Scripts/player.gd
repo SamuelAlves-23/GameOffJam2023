@@ -62,10 +62,18 @@ func move_state(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
-#		animationPlayer.play("Move")
+		if health_controller.health >=3:
+			animationPlayer.play("Move3Lives")
+		elif health_controller.health == 2:
+			animationPlayer.play("Move2Lives")
+		elif health_controller.health == 1:
+			animationPlayer.play("Move1Life")
+	
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
+		animationPlayer.stop()
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+	
 	move_and_slide()
 	if Input.is_action_just_pressed("dash") && !dash_cd:
 		state = PLAYER_STATES.DASH

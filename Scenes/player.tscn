@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cowl2mu74e3ng" path="res://Scenes/health_controller.tscn" id="5_drfry"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnon7"]
-size = Vector2(22, 9)
+size = Vector2(12, 2)
 
 [sub_resource type="Animation" id="Animation_il3ki"]
 resource_name = "Dash"
@@ -15,7 +15,7 @@ length = 0.7
 
 [sub_resource type="Animation" id="Animation_0lo6k"]
 resource_name = "Move1Life"
-length = 0.5
+length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -24,15 +24,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [10, 11, 12, 13, 14]
+"values": [10, 11, 12, 13, 14, 17]
 }
 
 [sub_resource type="Animation" id="Animation_n2nsd"]
 resource_name = "Move2Lives"
-length = 0.5
+length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -41,15 +41,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [5, 6, 7, 8, 9]
+"values": [5, 6, 7, 8, 9, 11]
 }
 
 [sub_resource type="Animation" id="Animation_wxrg8"]
 resource_name = "Move3Lives"
-length = 0.5
+length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -58,10 +58,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [0, 1, 2, 3, 4, 5]
 }
 
 [sub_resource type="Animation" id="Animation_v6e83"]
@@ -99,14 +99,15 @@ script = ExtResource("1_li8pp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4yj4g")
-hframes = 5
+hframes = 6
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11.5)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_nnon7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Move3Lives"
 libraries = {
 "": SubResource("AnimationLibrary_tfs1x")
 }

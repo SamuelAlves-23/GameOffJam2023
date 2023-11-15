@@ -71,7 +71,7 @@ func move_state(delta):
 	
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
-		animationPlayer.stop()
+#		animationPlayer.stop()
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	move_and_slide()

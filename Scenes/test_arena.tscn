@@ -20,7 +20,7 @@ position = Vector2(252, 127)
 position = Vector2(276, 78)
 
 [node name="Trap" parent="." instance=ExtResource("5_ci8kv")]
-position = Vector2(194, 201)
+position = Vector2(308, 148)
 
 [node name="MobSpawner" parent="." instance=ExtResource("7_ajnju")]
 

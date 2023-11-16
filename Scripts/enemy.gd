@@ -14,6 +14,7 @@ enum ENEMY_STATES{
 }
 
 var guarded_sprite
+var bulletContainer
 
 @onready var state = ENEMY_STATES.CHASE
 @onready var health_controller = $HealthController
@@ -25,7 +26,6 @@ var guarded_sprite
 @onready var dash_vector = Vector2.DOWN
 @onready var gun_cd = false
 @onready var bullet_scene = preload("res://Scenes/enemy_bullet.tscn")
-@onready var bulletContainer = $BulletContainer
 
 @export var enemy_type = ENEMY_TYPES.MINION
 @export var ACCELERATION = 300
@@ -35,6 +35,8 @@ var guarded_sprite
 func _ready():
 	if enemy_type == ENEMY_TYPES.SHIELD:
 		guarded_sprite = $GuardedSprite
+	elif enemy_type == ENEMY_TYPES.GUN:
+		bulletContainer = $BulletContainer
 
 func _physics_process(delta):
 	match state:

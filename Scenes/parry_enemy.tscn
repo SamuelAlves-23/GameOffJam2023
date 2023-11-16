@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://de1wkkymeof8e"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_rowoe"]
-[ext_resource type="Texture2D" uid="uid://c6168nxdyg4r5" path="res://Assets/Sprites/parry_enemy.png" id="2_lno1k"]
+[ext_resource type="Texture2D" uid="uid://dtyanyaeivfmj" path="res://Assets/Sprites/Finished/enemy_03.png" id="2_5ydlu"]
 [ext_resource type="PackedScene" uid="uid://cowl2mu74e3ng" path="res://Scenes/health_controller.tscn" id="3_cv7rg"]
 [ext_resource type="PackedScene" uid="uid://kbfhtgtgpfpl" path="res://Scenes/hurtbox.tscn" id="4_epyl7"]
 [ext_resource type="PackedScene" uid="uid://c210hg6cguya3" path="res://Scenes/hitbox.tscn" id="5_aog2w"]
@@ -74,11 +74,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhiff"]
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5m1i"]
-size = Vector2(20, 27)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebwr5"]
+radius = 5.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34udr"]
-size = Vector2(17, 7)
+size = Vector2(25, 7)
 
 [node name="ParryEnemy" type="CharacterBody2D"]
 position = Vector2(0, -16)
@@ -87,7 +87,7 @@ script = ExtResource("1_rowoe")
 enemy_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_lno1k")
+texture = ExtResource("2_5ydlu")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -116,15 +116,17 @@ collision_layer = 32
 collision_mask = 9
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-2, 1.5)
-shape = SubResource("RectangleShape2D_s5m1i")
+position = Vector2(-0.5, 0.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ebwr5")
 
 [node name="Hitbox" parent="." instance=ExtResource("5_aog2w")]
+position = Vector2(3, -11)
 collision_layer = 4
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(0.5, 11.5)
+position = Vector2(-3.5, 11.5)
 shape = SubResource("RectangleShape2D_34udr")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

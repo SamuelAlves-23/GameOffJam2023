@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ds4cybt5yic6i"]
+[gd_scene load_steps=3 format=3 uid="uid://ds4cybt5yic6i"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenuUI.gd" id="1_tptk4"]
+[ext_resource type="FontFile" uid="uid://bhqchek0oi41q" path="res://Assets/Fonts/pixelart.ttf" id="2_rdeqd"]
 
 [node name="MainMenuUI" type="Control"]
 layout_mode = 3
@@ -24,6 +25,7 @@ offset_right = 23.5001
 offset_bottom = -24.68
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_rdeqd")
 text = "PLAY"
 
 [node name="ExitButton" type="Button" parent="."]
@@ -39,6 +41,7 @@ offset_right = 4.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_rdeqd")
 text = "EXIT"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

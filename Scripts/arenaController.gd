@@ -36,3 +36,7 @@ func _on_level_timer_timeout():
 		hud.set_time_label(time_left)
 		if time_left <= 0:
 			pass
+
+func add_score(score_points):
+	print("PUNTUACION")
+	score += score_points

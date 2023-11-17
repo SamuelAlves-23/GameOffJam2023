@@ -9,7 +9,6 @@ var damage
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	damage = scale.x * damage_multiplier
-	print(damage)
 	translate(direction.normalized() * delta * speed)
 	await get_tree().create_timer(vanish_time).timeout
 	queue_free()

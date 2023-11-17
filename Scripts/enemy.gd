@@ -31,6 +31,7 @@ var bulletContainer
 @export var ACCELERATION = 300
 @export var MAX_SPEED = 20
 @export var FRICTION = 200
+@export var score_points = 0
 
 func _ready():
 	if enemy_type == ENEMY_TYPES.SHIELD:
@@ -83,12 +84,10 @@ func _on_hurtbox_area_entered(area):
 				guarded = false
 				guarded_sprite.visible = false
 				sprite.visible = true
-			print(guarded)
 		else:
 			print("Not enough damage")
 	elif enemy_type == ENEMY_TYPES.PARRY && area.scale.x >= 1:
 		state = ENEMY_STATES.DASH
-		print(state)
 	else:
 		health_controller.take_damage(area.damage)
 

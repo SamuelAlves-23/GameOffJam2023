@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://de1wkkymeof8e" path="res://Scenes/parry_enemy.tscn" id="9_foa4y"]
 [ext_resource type="PackedScene" uid="uid://cv7t8ohn4ahxm" path="res://Scenes/gun_enemy.tscn" id="10_0h80q"]
 
-[node name="TestArena" type="Node2D"]
+[node name="TestArena" type="Node2D" groups=["Arena"]]
 script = ExtResource("1_swf3l")
 
 [node name="TileMap" parent="." instance=ExtResource("7_442xi")]

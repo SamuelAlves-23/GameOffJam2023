@@ -122,7 +122,6 @@ func _on_hurtbox_area_entered(area):
 			item_equipped = "NONE"
 		else:
 			health_controller.take_damage(area.damage)
-		print(health_controller.health)
 		if health_controller.health <= 0:
 			state = PLAYER_STATES.DEATH
 		else:

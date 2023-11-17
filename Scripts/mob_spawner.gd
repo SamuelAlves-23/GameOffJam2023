@@ -13,7 +13,6 @@ extends Node2D
 func _ready():
 	for i in spawn_container.get_children():
 		spawn_points.append(i)
-	print(str(spawn_points))
 
 
 func _process(_delta):
@@ -26,7 +25,6 @@ func _process(_delta):
 
 func spawn_enemy(enemy):
 	var spawn_point = spawn_points.pick_random().global_position
-	print(spawn_point)
 	var enemy_instance = enemy.instantiate()
 	mob_container.add_child(enemy_instance)
 	enemy_instance.global_position = spawn_point

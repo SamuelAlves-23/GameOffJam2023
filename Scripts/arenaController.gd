@@ -52,4 +52,4 @@ func spawn_pickable(node_pos):
 #	var index = pickables.pick_random()
 	var pickable_scene = pickable_01.instantiate()
 	self.add_child(pickable_scene)
-	pickable_scene = node_pos.global_position
+	pickable_scene = node_pos

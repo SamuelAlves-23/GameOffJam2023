@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c617rvdiwajlq"]
+[gd_scene load_steps=8 format=3 uid="uid://c617rvdiwajlq"]
 
 [ext_resource type="PackedScene" uid="uid://d06x40l1epb15" path="res://Scenes/player.tscn" id="1_sa2ya"]
 [ext_resource type="Script" path="res://Scripts/arenaController.gd" id="1_swf3l"]
@@ -6,10 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bag261lg2cesu" path="res://Scenes/trap.tscn" id="5_ci8kv"]
 [ext_resource type="PackedScene" uid="uid://22jv6gkugs1n" path="res://Scenes/tile_map.tscn" id="7_442xi"]
 [ext_resource type="PackedScene" uid="uid://5pcy0o0ca5iy" path="res://Scenes/mob_spawner.tscn" id="7_ajnju"]
-[ext_resource type="PackedScene" uid="uid://dgb4040giivli" path="res://Scenes/shield_enemy.tscn" id="8_785hl"]
 [ext_resource type="PackedScene" uid="uid://he8m26jokd53" path="res://Scenes/ui_layer.tscn" id="8_hg5xl"]
-[ext_resource type="PackedScene" uid="uid://de1wkkymeof8e" path="res://Scenes/parry_enemy.tscn" id="9_foa4y"]
-[ext_resource type="PackedScene" uid="uid://cv7t8ohn4ahxm" path="res://Scenes/gun_enemy.tscn" id="10_0h80q"]
 
 [node name="TestArena" type="Node2D" groups=["Arena"]]
 script = ExtResource("1_swf3l")
@@ -28,14 +25,5 @@ position = Vector2(308, 148)
 [node name="MobSpawner" parent="." instance=ExtResource("7_ajnju")]
 
 [node name="UILayer" parent="." instance=ExtResource("8_hg5xl")]
-
-[node name="ShieldEnemy" parent="." instance=ExtResource("8_785hl")]
-position = Vector2(324, 74)
-
-[node name="ParryEnemy" parent="." instance=ExtResource("9_foa4y")]
-position = Vector2(331, 141)
-
-[node name="GunEnemy" parent="." instance=ExtResource("10_0h80q")]
-position = Vector2(302, 198)
 
 [editable path="UILayer"]

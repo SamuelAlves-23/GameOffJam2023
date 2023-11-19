@@ -7,8 +7,10 @@ extends Node
 func take_damage(damage):
 	health -= damage
 	if health <= 0 && parent is Enemy:
-		arena.add_score(parent.score_points)
+		arena.add_score()
 		die()
+		if arena.score % 10 == 0:
+			arena.spawn_pickable(parent)
 
 func die():
 	get_parent().queue_free()

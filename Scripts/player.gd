@@ -87,7 +87,7 @@ func move_state(delta):
 		if gun.scale > Vector2.ONE:
 			state = PLAYER_STATES.RECOIL
 		gun_cd = true
-		await get_tree().create_timer(gun.scale.x - 0.25).timeout
+		await get_tree().create_timer(gun.scale.x - 0.5).timeout
 		gun_cd = false
 
 func recoil_state(delta, gun_scale):

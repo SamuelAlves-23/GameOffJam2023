@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://kbfhtgtgpfpl" path="res://Scenes/hurtbox.tscn" id="4_j83bh"]
 [ext_resource type="PackedScene" uid="uid://cowl2mu74e3ng" path="res://Scenes/health_controller.tscn" id="5_drfry"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnon7"]
-size = Vector2(12, 2)
+[sub_resource type="CircleShape2D" id="CircleShape2D_g13kn"]
+radius = 5.0
 
 [sub_resource type="Animation" id="Animation_il3ki"]
 resource_name = "Dash"
@@ -94,7 +94,6 @@ size = Vector2(12, 22)
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(0, -16)
 collision_layer = 2
-collision_mask = 65
 script = ExtResource("1_li8pp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -104,7 +103,7 @@ vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_nnon7")
+shape = SubResource("CircleShape2D_g13kn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Move3Lives"
@@ -123,7 +122,7 @@ limit_bottom = 850
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_j83bh")]
 collision_layer = 16
-collision_mask = 388
+collision_mask = 452
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(0, -4)

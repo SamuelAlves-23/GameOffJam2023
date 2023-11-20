@@ -28,6 +28,7 @@ var mail_equipped = false
 @export var dash_cd = false
 @export var size_variation = Vector2(0.5,0.5)
 
+@onready var invulnerable = false
 @onready var animationPlayer = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var gun = $Gun
@@ -55,7 +56,7 @@ func _process(delta):
 			
 
 func move_state(delta):
-	var direction = get_viewport().get_mouse_position().x
+	var direction = get_global_mouse_position().x
 #	input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -115,14 +116,19 @@ func hit_state(delta):
 
 func _on_hurtbox_area_entered(area):
 	if state != PLAYER_STATES.DEATH:
-		var current_pos = global_position
-		damage_recoil_vector = -(area.global_position - current_pos)
-		damage_recoil_vector = damage_recoil_vector.normalized()
-		if item_equipped == "MAIL":
-			item_equipped = "NONE"
+		if area is Pickable:
+			print("Area pickable")
+			item_equipped =area.item_name
+			area.queue_free()
 		else:
-			health_controller.take_damage(area.damage)
-		if health_controller.health <= 0:
-			state = PLAYER_STATES.DEATH
-		else:
-			state = PLAYER_STATES.HIT
+			var current_pos = global_position
+			damage_recoil_vector = -(area.global_position - current_pos)
+			damage_recoil_vector = damage_recoil_vector.normalized()
+			if item_equipped == "MAIL":
+				item_equipped = "NONE"
+			else:
+				health_controller.take_damage(area.damage)
+			if health_controller.health <= 0:
+				state = PLAYER_STATES.DEATH
+			else:
+				state = PLAYER_STATES.HIT

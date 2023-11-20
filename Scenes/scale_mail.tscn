@@ -8,7 +8,7 @@ size = Vector2(10, 12)
 
 [node name="ScaleMail" type="Area2D"]
 collision_layer = 64
-collision_mask = 2
+collision_mask = 16
 script = ExtResource("1_nfgmo")
 item_name = "MAIL"
 

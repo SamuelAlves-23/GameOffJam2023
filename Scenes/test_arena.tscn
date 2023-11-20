@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c617rvdiwajlq"]
+[gd_scene load_steps=9 format=3 uid="uid://c617rvdiwajlq"]
 
 [ext_resource type="PackedScene" uid="uid://d06x40l1epb15" path="res://Scenes/player.tscn" id="1_sa2ya"]
 [ext_resource type="Script" path="res://Scripts/arenaController.gd" id="1_swf3l"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bag261lg2cesu" path="res://Scenes/trap.tscn" id="5_ci8kv"]
 [ext_resource type="PackedScene" uid="uid://22jv6gkugs1n" path="res://Scenes/tile_map.tscn" id="7_442xi"]
 [ext_resource type="PackedScene" uid="uid://5pcy0o0ca5iy" path="res://Scenes/mob_spawner.tscn" id="7_ajnju"]
+[ext_resource type="PackedScene" uid="uid://cv7t8ohn4ahxm" path="res://Scenes/gun_enemy.tscn" id="8_bygb0"]
 [ext_resource type="PackedScene" uid="uid://he8m26jokd53" path="res://Scenes/ui_layer.tscn" id="8_hg5xl"]
 
 [node name="TestArena" type="Node2D" groups=["Arena"]]
@@ -125,6 +126,12 @@ position = Vector2(848, 215)
 
 [node name="Trap29" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
 position = Vector2(828, 215)
+
+[node name="GunEnemy" parent="." instance=ExtResource("8_bygb0")]
+position = Vector2(321, 158)
+
+[node name="ScaleMail2" parent="." instance=ExtResource("3_gnne6")]
+position = Vector2(197, 137)
 
 [editable path="MobSpawner"]
 [editable path="UILayer"]

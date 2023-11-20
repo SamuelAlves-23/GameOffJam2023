@@ -4,7 +4,6 @@ class_name  Pickable
 
 
 func _on_body_entered(body):
-	if body is Player:
-		print("Picked up")
-		body.item_equipped = item_name
-		queue_free()
+	print("Picked up")
+	body.item_equipped = item_name
+	queue_free()

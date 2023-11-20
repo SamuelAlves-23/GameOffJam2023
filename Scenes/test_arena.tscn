@@ -14,18 +14,117 @@ script = ExtResource("1_swf3l")
 [node name="TileMap" parent="." instance=ExtResource("7_442xi")]
 
 [node name="Player" parent="." instance=ExtResource("1_sa2ya")]
-position = Vector2(252, 127)
+position = Vector2(143, 140)
 
 [node name="ScaleMail" parent="." instance=ExtResource("3_gnne6")]
 position = Vector2(276, 78)
 
-[node name="Trap" parent="." instance=ExtResource("5_ci8kv")]
-position = Vector2(308, 148)
-
 [node name="MobSpawner" parent="." instance=ExtResource("7_ajnju")]
+
+[node name="Spawn_01" parent="MobSpawner/SpawnContainer" index="0"]
+position = Vector2(1235, 41)
+
+[node name="Spawn_02" parent="MobSpawner/SpawnContainer" index="1"]
+position = Vector2(402, 118)
+
+[node name="Spawn_03" parent="MobSpawner/SpawnContainer" index="2"]
+position = Vector2(224, 489)
+
+[node name="Spawn_04" parent="MobSpawner/SpawnContainer" index="3"]
+position = Vector2(1247, 261)
+
+[node name="Spawn_05" parent="MobSpawner/SpawnContainer" index="4"]
+position = Vector2(56, 780)
+
+[node name="Spawn_06" parent="MobSpawner/SpawnContainer" index="5"]
+position = Vector2(542, 793)
 
 [node name="UILayer" parent="." instance=ExtResource("8_hg5xl")]
 
 [node name="PickableContainer" type="Node" parent="."]
 
+[node name="TrapContainer" type="Node" parent="."]
+
+[node name="Trap" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(622, 132)
+
+[node name="Trap4" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(602, 132)
+
+[node name="Trap5" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(582, 132)
+
+[node name="Trap6" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(248, 363)
+
+[node name="Trap7" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(228, 363)
+
+[node name="Trap8" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(208, 363)
+
+[node name="Trap9" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(777, 503)
+
+[node name="Trap10" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(757, 503)
+
+[node name="Trap11" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(737, 503)
+
+[node name="Trap12" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(179, 768)
+
+[node name="Trap13" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(159, 768)
+
+[node name="Trap14" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(139, 768)
+
+[node name="Trap15" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(916, 664)
+
+[node name="Trap16" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(896, 664)
+
+[node name="Trap17" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(876, 664)
+
+[node name="Trap18" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(398, 762)
+
+[node name="Trap19" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(378, 762)
+
+[node name="Trap20" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(358, 762)
+
+[node name="Trap21" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(1168, 582)
+
+[node name="Trap22" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(1148, 582)
+
+[node name="Trap23" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(1128, 582)
+
+[node name="Trap24" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(1218, 149)
+
+[node name="Trap25" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(1198, 149)
+
+[node name="Trap26" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(1178, 149)
+
+[node name="Trap27" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(868, 215)
+
+[node name="Trap28" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(848, 215)
+
+[node name="Trap29" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
+position = Vector2(828, 215)
+
+[editable path="MobSpawner"]
 [editable path="UILayer"]

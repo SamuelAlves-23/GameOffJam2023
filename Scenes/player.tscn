@@ -116,7 +116,10 @@ libraries = {
 position = Vector2(-3, -2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
+limit_left = -10
+limit_top = -30
+limit_right = 1290
+limit_bottom = 850
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_j83bh")]
 collision_layer = 16
@@ -127,8 +130,6 @@ position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_n7j68")
 
 [node name="HealthController" parent="." instance=ExtResource("5_drfry")]
-
-[node name="Camera2D2" type="Camera2D" parent="."]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 

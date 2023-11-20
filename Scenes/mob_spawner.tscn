@@ -23,3 +23,6 @@ position = Vector2(82, 221)
 
 [node name="Spawn_05" type="Marker2D" parent="SpawnContainer"]
 position = Vector2(59, 51)
+
+[node name="Spawn_06" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(59, 51)

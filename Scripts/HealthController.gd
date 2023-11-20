@@ -10,7 +10,7 @@ func take_damage(damage):
 		arena.add_score()
 		die()
 		if arena.score % 10 == 0:
-			arena.spawn_pickable(self.global_position)
+			arena.spawn_pickable(parent.global_position)
 
 func die():
 	get_parent().queue_free()

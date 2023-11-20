@@ -9,6 +9,7 @@ extends Node2D
 @onready var mob_spawner = $MobSpawner
 @onready var player = $Player
 @onready var hud = $UILayer/HUD
+@onready var pickableContainer = $PickableContainer
 
 var pickables = [pickable_01]
 var timer_node = null
@@ -50,6 +51,7 @@ func add_score():
 # REPARAR SPAWN VARIABLE
 func spawn_pickable(node_pos):
 #	var index = pickables.pick_random()
+	print(node_pos)
 	var pickable_scene = pickable_01.instantiate()
-	self.add_child(pickable_scene)
-	pickable_scene = node_pos
+	pickableContainer.add_child(pickable_scene)
+	pickable_scene.global_position = node_pos

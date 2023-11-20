@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var level_time = 120
+@export var level_time: float = 120
 
 @onready var pickable_01 = preload("res://Scenes/scale_mail.tscn")
 
@@ -14,7 +14,8 @@ extends Node2D
 var pickables = [pickable_01]
 var timer_node = null
 var level_end = false
-var time_left
+var time_left : float
+var level_progress : float
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,7 +41,19 @@ func _process(delta):
 func _on_level_timer_timeout():
 	if !level_end:
 		time_left -= 1
+		level_progress = time_left / level_time
+		print(level_progress)
 		hud.set_time_label(time_left)
+		if level_progress < 0.25:
+			mob_spawner.spawner_state = mob_spawner.SPAWNER_STATES.FOURTH_PHASE
+			print("ESTADO 4")
+		elif level_progress < 0.5 && level_progress >= 0.25:
+			mob_spawner.spawner_state = mob_spawner.SPAWNER_STATES.THIRD_PHASE
+			print("ESTADO 3")
+		elif level_progress < 0.75 && level_progress >= 0.5:
+			mob_spawner.spawner_state = mob_spawner.SPAWNER_STATES.SECOND_PHASE
+			print("ESTADO 2")
+		
 		if time_left <= 0:
 			pass
 

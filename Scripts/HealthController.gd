@@ -8,6 +8,7 @@ func take_damage(damage):
 	
 	if !parent.invulnerable:
 		health -= damage
+		
 	
 	if parent is Player && !parent.invulnerable:
 		parent.invulnerable = true
@@ -21,6 +22,10 @@ func take_damage(damage):
 		die()
 		if arena.score % 10 == 0:
 			arena.spawn_pickable(parent.global_position)
+
+func heal():
+	if health < 3:
+		health += 1
 
 func die():
 	get_parent().queue_free()

@@ -1,23 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsmvxxqnaa0as"]
+[gd_scene load_steps=5 format=3 uid="uid://dsmvxxqnaa0as"]
 
-[ext_resource type="Texture2D" uid="uid://djmfdt5874o2b" path="res://Assets/Sprites/mail.png" id="1_lvwjf"]
 [ext_resource type="Script" path="res://Scripts/pickable.gd" id="1_nfgmo"]
+[ext_resource type="Texture2D" uid="uid://b2if7f0dhj4v2" path="res://Assets/Sprites/Finished/health_ingot_pickable.png" id="2_bfqsh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_262eh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bfqsh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0x6pq"]
-size = Vector2(10, 12)
+size = Vector2(10, 10)
 
 [node name="ScaleMail" type="Area2D"]
 collision_layer = 64
 collision_mask = 16
 script = ExtResource("1_nfgmo")
-item_name = "MAIL"
+item_name = "INGOT"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -13)
-texture = ExtResource("1_lvwjf")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_262eh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(1, -3)
 shape = SubResource("RectangleShape2D_0x6pq")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d06x40l1epb15"]
+[gd_scene load_steps=15 format=3 uid="uid://d06x40l1epb15"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_li8pp"]
 [ext_resource type="Texture2D" uid="uid://bot3wi8yypimt" path="res://Assets/Sprites/Finished/Player-Sheet.png" id="2_4yj4g"]
@@ -91,10 +91,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7j68"]
 size = Vector2(12, 22)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqkfm"]
+radius = 1.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(0, -16)
 collision_layer = 2
 script = ExtResource("1_li8pp")
+cd_cap = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4yj4g")
@@ -122,7 +126,7 @@ limit_bottom = 850
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_j83bh")]
 collision_layer = 16
-collision_mask = 452
+collision_mask = 324
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(0, -4)
@@ -130,6 +134,14 @@ shape = SubResource("RectangleShape2D_n7j68")
 
 [node name="HealthController" parent="." instance=ExtResource("5_drfry")]
 
+[node name="WaveArea" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 4
+
+[node name="WaveCollider" type="CollisionShape2D" parent="WaveArea"]
+shape = SubResource("CircleShape2D_tqkfm")
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="WaveArea" to="." method="_on_wave_area_area_entered"]
 
 [editable path="Hurtbox"]

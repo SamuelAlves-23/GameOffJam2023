@@ -8,8 +8,7 @@ enum PLAYER_STATES{
 	DASH,
 	DEATH
 }
-const pickables = ["NONE", "MAIL"]
-var item_equipped = "NONE"
+
 var state = PLAYER_STATES.MOVE
 var damage_recoil_vector
 var recoil_vector = Vector2.DOWN
@@ -27,14 +26,18 @@ var mail_equipped = false
 @export var gun_cd = false
 @export var dash_cd = false
 @export var size_variation = Vector2(0.5,0.5)
+@export var cd_cap = 0.2
+@export var death_wave = false
 
 @onready var invulnerable = false
+@onready var waveCollider = $WaveArea/WaveCollider
 @onready var animationPlayer = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var gun = $Gun
 @onready var health_controller = $HealthController
 @onready var collision = $CollisionShape2D
 @onready var hurtbox_collider = $Hurtbox/CollisionShape2D
+@onready var arena = get_tree().get_first_node_in_group("Arena")
 
 func _process(delta):
 	var direction = get_viewport().get_mouse_position().x
@@ -88,7 +91,7 @@ func move_state(delta):
 		if gun.scale > Vector2.ONE:
 			state = PLAYER_STATES.RECOIL
 		gun_cd = true
-		await get_tree().create_timer(gun.scale.x - 0.5).timeout
+		await get_tree().create_timer(gun.scale.x - 1).timeout
 		gun_cd = false
 
 func recoil_state(delta, gun_scale):
@@ -118,17 +121,55 @@ func _on_hurtbox_area_entered(area):
 	if state != PLAYER_STATES.DEATH:
 		if area is Pickable:
 			print("Area pickable")
-			item_equipped =area.item_name
+			pickable_effect(area.item_name)
 			area.queue_free()
 		else:
 			var current_pos = global_position
 			damage_recoil_vector = -(area.global_position - current_pos)
 			damage_recoil_vector = damage_recoil_vector.normalized()
-			if item_equipped == "MAIL":
-				item_equipped = "NONE"
-			else:
-				health_controller.take_damage(area.damage)
+			health_controller.take_damage(area.damage)
 			if health_controller.health <= 0:
 				state = PLAYER_STATES.DEATH
 			else:
 				state = PLAYER_STATES.HIT
+
+func pickable_effect(pickable):
+	if pickable == "INGOT":
+		health_controller.heal()
+	elif pickable == "WAVE":
+		var limit = 0
+		while true:
+			waveCollider.scale +=Vector2(2.5,2.5)
+			limit +=1
+			await get_tree().create_timer(0.00001).timeout
+			if limit > 50:
+				limit = 0
+				waveCollider.scale = Vector2.ONE
+				break
+	elif pickable == "SHOCK":
+		for i in arena.mob_container.get_children():
+			i.state = i.ENEMY_STATES.PARALYZED
+	elif pickable == "DEATH":
+		var limit = 0
+		while true:
+			death_wave = true
+			waveCollider.scale +=Vector2(2.5,2.5)
+			limit +=1
+			await get_tree().create_timer(0.00001).timeout
+			if limit > 50:
+				death_wave = false
+				limit = 0
+				waveCollider.scale = Vector2.ONE
+				break
+	elif pickable == "UNCAP":
+		cd_cap = 0.5
+		await get_tree().create_timer(5).timeout
+		cd_cap = 0.2
+
+
+func _on_wave_area_area_entered(area):
+	if !death_wave:
+		area.get_parent().recoil_pos = global_position
+		area.get_parent().state = area.get_parent().ENEMY_STATES.RECOIL
+	else:
+		area.get_parent().queue_free()

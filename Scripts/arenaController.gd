@@ -2,16 +2,21 @@ extends Node2D
 
 @export var level_time: float = 120
 
-@onready var pickable_01 = preload("res://Scenes/scale_mail.tscn")
-
 @onready var score = 0
 @onready var death_screen = $UILayer/DeathScreen
 @onready var mob_spawner = $MobSpawner
+@onready var mob_container = $MobSpawner/MobContainer
 @onready var player = $Player
 @onready var hud = $UILayer/HUD
 @onready var pickableContainer = $PickableContainer
 
-var pickables = [pickable_01]
+var pickables = [
+	preload("res://Scenes/scale_mail.tscn"),
+	preload("res://Scenes/impulse_wave.tscn"),
+	preload("res://Scenes/uncap_bullets.tscn"),
+	preload("res://Scenes/sock_death.tscn"),
+	preload("res://Scenes/shock.tscn")]
+	
 var timer_node = null
 var level_end = false
 var time_left : float
@@ -20,6 +25,7 @@ var level_progress : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	time_left = level_time
 	hud.set_time_label(time_left)
 	timer_node = Timer.new()
@@ -64,7 +70,7 @@ func add_score():
 # REPARAR SPAWN VARIABLE
 func spawn_pickable(node_pos):
 #	var index = pickables.pick_random()
-	print(node_pos)
-	var pickable_scene = pickable_01.instantiate()
+	var chosen = pickables.pick_random()
+	var pickable_scene = chosen.instantiate()
 	pickableContainer.add_child(pickable_scene)
 	pickable_scene.global_position = node_pos

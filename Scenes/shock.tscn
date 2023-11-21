@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkuoghjyeolq5"]
+
+[ext_resource type="Script" path="res://Scripts/pickable.gd" id="1_18k4h"]
+[ext_resource type="Texture2D" uid="uid://bbjuxyct7tw7r" path="res://Assets/Sprites/Finished/Shock_pickable-Sheet.png" id="2_1p0rf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gksyx"]
+atlas = ExtResource("2_1p0rf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wogf"]
+atlas = ExtResource("2_1p0rf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0norj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gksyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wogf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5bal"]
+size = Vector2(18, 20)
+
+[node name="Shock" type="Area2D"]
+collision_layer = 64
+collision_mask = 16
+script = ExtResource("1_18k4h")
+item_name = "SHOCK"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0norj")
+autoplay = "default"
+frame_progress = 0.121349
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u5bal")

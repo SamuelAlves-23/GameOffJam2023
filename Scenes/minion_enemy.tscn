@@ -22,7 +22,8 @@ height = 14.0
 
 [node name="MinionEnemy" type="CharacterBody2D"]
 position = Vector2(0, -16)
-collision_layer = 0
+collision_layer = 4
+collision_mask = 517
 script = ExtResource("1_6m3ak")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

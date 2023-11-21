@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1xvy3ftu8yv4"]
+
+[ext_resource type="Texture2D" uid="uid://dc0280eddolgx" path="res://Assets/Sprites/Finished/Wave_pickable-Sheet.png" id="1_468h1"]
+[ext_resource type="Script" path="res://Scripts/pickable.gd" id="1_ns56s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbhle"]
+atlas = ExtResource("1_468h1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hagmf"]
+atlas = ExtResource("1_468h1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g07nd"]
+atlas = ExtResource("1_468h1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqnb3"]
+atlas = ExtResource("1_468h1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n07cn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbhle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hagmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g07nd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqnb3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_krolb"]
+radius = 5.0
+
+[node name="ImpulseWave" type="Area2D"]
+collision_layer = 64
+collision_mask = 16
+script = ExtResource("1_ns56s")
+item_name = "WAVE"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n07cn")
+autoplay = "default"
+frame_progress = 0.226969
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_krolb")

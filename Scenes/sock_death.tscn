@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://c10epw5hfehw2"]
+
+[ext_resource type="Texture2D" uid="uid://dequflmqw6k15" path="res://Assets/Sprites/Finished/Shock_death_pickable-Sheet.png" id="1_0sjo7"]
+[ext_resource type="Script" path="res://Scripts/pickable.gd" id="1_llcy1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcivl"]
+atlas = ExtResource("1_0sjo7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npnsm"]
+atlas = ExtResource("1_0sjo7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjrj2"]
+atlas = ExtResource("1_0sjo7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8jnc"]
+atlas = ExtResource("1_0sjo7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ki1am"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcivl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npnsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjrj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8jnc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vvc1d"]
+radius = 5.0
+
+[node name="SockDeath" type="Area2D"]
+collision_layer = 64
+collision_mask = 16
+script = ExtResource("1_llcy1")
+item_name = "DEATH"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ki1am")
+autoplay = "default"
+frame_progress = 0.0999066
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vvc1d")

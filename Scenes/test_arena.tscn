@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c617rvdiwajlq"]
+[gd_scene load_steps=12 format=3 uid="uid://c617rvdiwajlq"]
 
 [ext_resource type="PackedScene" uid="uid://d06x40l1epb15" path="res://Scenes/player.tscn" id="1_sa2ya"]
 [ext_resource type="Script" path="res://Scripts/arenaController.gd" id="1_swf3l"]
@@ -6,8 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://bag261lg2cesu" path="res://Scenes/trap.tscn" id="5_ci8kv"]
 [ext_resource type="PackedScene" uid="uid://22jv6gkugs1n" path="res://Scenes/tile_map.tscn" id="7_442xi"]
 [ext_resource type="PackedScene" uid="uid://5pcy0o0ca5iy" path="res://Scenes/mob_spawner.tscn" id="7_ajnju"]
-[ext_resource type="PackedScene" uid="uid://cv7t8ohn4ahxm" path="res://Scenes/gun_enemy.tscn" id="8_bygb0"]
 [ext_resource type="PackedScene" uid="uid://he8m26jokd53" path="res://Scenes/ui_layer.tscn" id="8_hg5xl"]
+[ext_resource type="PackedScene" uid="uid://d1xvy3ftu8yv4" path="res://Scenes/impulse_wave.tscn" id="9_0uvbq"]
+[ext_resource type="PackedScene" uid="uid://76ov3prq2ew0" path="res://Scenes/uncap_bullets.tscn" id="11_l3vag"]
+[ext_resource type="PackedScene" uid="uid://c10epw5hfehw2" path="res://Scenes/sock_death.tscn" id="12_xlnnw"]
+[ext_resource type="PackedScene" uid="uid://bkuoghjyeolq5" path="res://Scenes/shock.tscn" id="13_xc1ce"]
 
 [node name="TestArena" type="Node2D" groups=["Arena"]]
 script = ExtResource("1_swf3l")
@@ -15,10 +18,8 @@ script = ExtResource("1_swf3l")
 [node name="TileMap" parent="." instance=ExtResource("7_442xi")]
 
 [node name="Player" parent="." instance=ExtResource("1_sa2ya")]
+z_index = 3
 position = Vector2(143, 140)
-
-[node name="ScaleMail" parent="." instance=ExtResource("3_gnne6")]
-position = Vector2(276, 78)
 
 [node name="MobSpawner" parent="." instance=ExtResource("7_ajnju")]
 
@@ -127,11 +128,20 @@ position = Vector2(848, 215)
 [node name="Trap29" parent="TrapContainer" instance=ExtResource("5_ci8kv")]
 position = Vector2(828, 215)
 
-[node name="GunEnemy" parent="." instance=ExtResource("8_bygb0")]
-position = Vector2(321, 158)
-
 [node name="ScaleMail2" parent="." instance=ExtResource("3_gnne6")]
-position = Vector2(197, 137)
+position = Vector2(207, 109)
+
+[node name="ImpulseWave" parent="." instance=ExtResource("9_0uvbq")]
+position = Vector2(208, 126)
+
+[node name="UncapBullets" parent="." instance=ExtResource("11_l3vag")]
+position = Vector2(207, 146)
+
+[node name="SockDeath" parent="." instance=ExtResource("12_xlnnw")]
+position = Vector2(207, 165)
+
+[node name="Shock" parent="." instance=ExtResource("13_xc1ce")]
+position = Vector2(87, 141)
 
 [editable path="MobSpawner"]
 [editable path="UILayer"]

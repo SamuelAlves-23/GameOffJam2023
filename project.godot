@@ -81,6 +81,7 @@ dash={
 2d_physics/layer_7="pickables"
 2d_physics/layer_8="traps"
 2d_physics/layer_9="enemyBullet"
+2d_physics/layer_10="WavesPickables"
 
 [rendering]
 

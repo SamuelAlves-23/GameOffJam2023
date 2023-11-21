@@ -10,12 +10,16 @@ enum ENEMY_TYPES{
 enum ENEMY_STATES{
 	CHASE,
 	DASH,
-	SHOOT
+	SHOOT,
+	RECOIL,
+	PARALYZED
 }
 
 var guarded_sprite
 var bulletContainer
+var recoil_pos
 
+@onready var recoil_vector = Vector2.DOWN
 @onready var state = ENEMY_STATES.CHASE
 @onready var health_controller = $HealthController
 @onready var sprite = $Sprite2D
@@ -25,12 +29,14 @@ var bulletContainer
 @onready var dash_speed = 120
 @onready var dash_vector = Vector2.DOWN
 @onready var gun_cd = false
+@onready var invulnerable = false
 @onready var bullet_scene = preload("res://Scenes/enemy_bullet.tscn")
 
 @export var enemy_type = ENEMY_TYPES.MINION
 @export var ACCELERATION = 300
 @export var MAX_SPEED = 20
 @export var FRICTION = 200
+@export var RECOIL_SPEED = 10000
 @export var score_points = 0
 
 func _ready():
@@ -47,6 +53,14 @@ func _physics_process(delta):
 			dash_state(delta)
 		ENEMY_STATES.SHOOT:
 			shoot_state(delta)
+		ENEMY_STATES.RECOIL:
+			recoil_state(delta)
+		ENEMY_STATES.PARALYZED:
+			paralyzed_state()
+
+func paralyzed_state():
+	await get_tree().create_timer(5).timeout
+	state = ENEMY_STATES.CHASE
 
 func chase_state(delta):
 	var direction = (player.global_position - global_position).normalized()
@@ -55,6 +69,14 @@ func chase_state(delta):
 	if enemy_type == ENEMY_TYPES.GUN && !gun_cd:
 		state = ENEMY_STATES.SHOOT
 	move_and_slide()
+
+func recoil_state(delta):
+	var current_pos = global_position
+	recoil_vector = -(recoil_pos - current_pos)
+	recoil_vector = recoil_vector.normalized()
+	velocity = RECOIL_SPEED * recoil_vector * delta
+	move_and_slide()
+	state = ENEMY_STATES.CHASE
 
 func shoot_state(delta):
 	var bullet = bullet_scene.instantiate()

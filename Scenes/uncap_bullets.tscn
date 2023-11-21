@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://76ov3prq2ew0"]
+
+[ext_resource type="Script" path="res://Scripts/pickable.gd" id="1_8wd8i"]
+[ext_resource type="Texture2D" uid="uid://bkvnq4fq83llr" path="res://Assets/Sprites/Finished/Bullets_pickable.png" id="1_k2idk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2esr"]
+size = Vector2(12, 14)
+
+[node name="UncapBullets" type="Area2D"]
+collision_layer = 64
+collision_mask = 16
+script = ExtResource("1_8wd8i")
+item_name = "UNCAP"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_k2idk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_l2esr")

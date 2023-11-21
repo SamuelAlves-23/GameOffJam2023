@@ -8,7 +8,6 @@ class_name Bullet
 @onready var walls = get_tree().get_first_node_in_group("Walls")
 var damage 
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	damage = scale.x * damage_multiplier

@@ -3,7 +3,7 @@ extends Node
 @export var health = 3
 @onready var parent = get_parent()
 @onready var arena = get_tree().get_first_node_in_group("Arena")
-var death_effect
+@onready var death_effect = preload("res://Scenes/death_effect.tscn")
 
 func take_damage(damage):
 	
@@ -34,4 +34,6 @@ func heal():
 
 func die():
 	get_parent().queue_free()
-#	var deathEffect = 
+	var death_effect_instance = death_effect.instantiate()
+	parent.get_parent().add_child(death_effect_instance)
+	death_effect_instance.global_position = parent.global_position

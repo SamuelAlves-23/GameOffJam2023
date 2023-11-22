@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c617rvdiwajlq"]
+[gd_scene load_steps=13 format=3 uid="uid://c617rvdiwajlq"]
 
 [ext_resource type="PackedScene" uid="uid://d06x40l1epb15" path="res://Scenes/player.tscn" id="1_sa2ya"]
 [ext_resource type="Script" path="res://Scripts/arenaController.gd" id="1_swf3l"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://he8m26jokd53" path="res://Scenes/ui_layer.tscn" id="8_hg5xl"]
 [ext_resource type="PackedScene" uid="uid://d1xvy3ftu8yv4" path="res://Scenes/impulse_wave.tscn" id="9_0uvbq"]
 [ext_resource type="PackedScene" uid="uid://76ov3prq2ew0" path="res://Scenes/uncap_bullets.tscn" id="11_l3vag"]
+[ext_resource type="PackedScene" uid="uid://de1wkkymeof8e" path="res://Scenes/parry_enemy.tscn" id="12_8fjq8"]
 [ext_resource type="PackedScene" uid="uid://c10epw5hfehw2" path="res://Scenes/sock_death.tscn" id="12_xlnnw"]
 [ext_resource type="PackedScene" uid="uid://bkuoghjyeolq5" path="res://Scenes/shock.tscn" id="13_xc1ce"]
 
@@ -142,6 +143,9 @@ position = Vector2(207, 165)
 
 [node name="Shock" parent="." instance=ExtResource("13_xc1ce")]
 position = Vector2(87, 141)
+
+[node name="ParryEnemy" parent="." instance=ExtResource("12_8fjq8")]
+position = Vector2(307, 140)
 
 [editable path="MobSpawner"]
 [editable path="UILayer"]

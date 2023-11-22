@@ -41,7 +41,7 @@ var mail_equipped = false
 @onready var pickup_effect = preload("res://Scenes/pickup_effect.tscn")
 
 func _process(delta):
-	var direction = get_viewport().get_mouse_position().x
+	var direction = get_global_mouse_position().x
 	if direction != 0:
 		sprite.flip_h = (direction < self.global_position.x)
 	

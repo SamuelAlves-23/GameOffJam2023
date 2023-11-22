@@ -5,7 +5,8 @@ class_name Bullet
 @export var vanish_time = 0.5
 @export var damage_multiplier = 10
 
-@onready var walls = get_tree().get_first_node_in_group("Walls")
+#@onready var walls = get_tree().get_first_node_in_group("Walls")
+@onready var vanish_effect = preload("res://Scenes/vanish_effect.tscn")
 var damage 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,6 +15,10 @@ func _process(delta):
 	translate(direction.normalized() * delta * speed)
 	await get_tree().create_timer(vanish_time).timeout
 	queue_free()
+	var vanish_effect_instance = vanish_effect.instantiate()
+	get_parent().add_child(vanish_effect_instance)
+	vanish_effect_instance.scale = scale
+	vanish_effect_instance.global_position = global_position  
 
 
 func _on_area_entered(area):

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dj14iwi0lgveq"]
+
+[ext_resource type="Texture2D" uid="uid://ckum1nqx7412l" path="res://Assets/Sprites/Finished/Vanish_bullet-Sheet.png" id="1_tpqtr"]
+[ext_resource type="Script" path="res://Scripts/effects.gd" id="2_s68e2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqteg"]
+atlas = ExtResource("1_tpqtr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mst54"]
+atlas = ExtResource("1_tpqtr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg3rp"]
+atlas = ExtResource("1_tpqtr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vuw1"]
+atlas = ExtResource("1_tpqtr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4yft0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqteg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mst54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg3rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vuw1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="VanishEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_4yft0")
+autoplay = "default"
+frame = 2
+frame_progress = 0.360327
+script = ExtResource("2_s68e2")

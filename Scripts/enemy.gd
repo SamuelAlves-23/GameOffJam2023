@@ -20,6 +20,7 @@ var bulletContainer
 var recoil_pos
 
 @onready var damage_color_code = "ff0006"
+@onready var guard_color_code = "00ffff"
 @onready var recoil_vector = Vector2.DOWN
 @onready var state = ENEMY_STATES.CHASE
 @onready var health_controller = $HealthController
@@ -92,27 +93,37 @@ func shoot_state(delta):
 	gun_cd = false
 
 func dash_state(delta):
+	sprite.set_modulate(guard_color_code)
 	var direction = (player.global_position - global_position).normalized()
 	velocity = velocity.move_toward(direction * dash_speed, ACCELERATION * delta)
 	sprite.flip_h = velocity.x > 0
 	move_and_slide()
 	await get_tree().create_timer(1).timeout
+	sprite.set_modulate("ffffff")
 	state = ENEMY_STATES.CHASE
 	
 func _on_hurtbox_area_entered(area):
 	if enemy_type == ENEMY_TYPES.SHIELD && guarded:
 		if area.scale.x > 1:
 			guard_life -= area.damage
+			guarded_sprite.set_modulate(damage_color_code)
+			await get_tree().create_timer(0.1).timeout
+			guarded_sprite.set_modulate("ffffff")
 			if guard_life <= 0:
+				var death_effect_instance = health_controller.death_effect.instantiate()
+				get_parent().add_child(death_effect_instance)
+				death_effect_instance.global_position = global_position
 				guarded = false
 				guarded_sprite.visible = false
 				sprite.visible = true
 		else:
-			print("Not enough damage")
+			guarded_sprite.set_modulate(guard_color_code)
+			await get_tree().create_timer(0.1).timeout
+			guarded_sprite.set_modulate("ffffff")
 	elif enemy_type == ENEMY_TYPES.PARRY && area.scale.x >= 1:
 		state = ENEMY_STATES.DASH
 	else:
-		sprite.set_modulate("ff0006")
+		sprite.set_modulate(damage_color_code)
 		health_controller.take_damage(area.damage)
 		await get_tree().create_timer(0.1).timeout
 		sprite.set_modulate("ffffff")

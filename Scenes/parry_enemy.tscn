@@ -72,7 +72,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhiff"]
-size = Vector2(6, 3)
+size = Vector2(30, 3)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebwr5"]
 radius = 5.5

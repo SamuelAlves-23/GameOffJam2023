@@ -3,6 +3,7 @@ extends Node
 @export var health = 3
 @onready var parent = get_parent()
 @onready var arena = get_tree().get_first_node_in_group("Arena")
+var death_effect
 
 func take_damage(damage):
 	
@@ -12,11 +13,15 @@ func take_damage(damage):
 	
 	if parent is Player && !parent.invulnerable:
 		parent.invulnerable = true
-		parent.sprite.visible = false
-		print(health)
-		await get_tree().create_timer(2).timeout
+		print(parent.invulnerable)
+		for i in 10:
+			parent.sprite.visible = false
+			await await get_tree().create_timer(0.1).timeout
+			parent.sprite.visible = true
+			await await get_tree().create_timer(0.1).timeout
+		
 		parent.invulnerable = false
-		parent.sprite.visible = true
+		print(parent.invulnerable)
 	if health <= 0 && parent is Enemy:
 		arena.add_score()
 		die()
@@ -29,3 +34,4 @@ func heal():
 
 func die():
 	get_parent().queue_free()
+#	var deathEffect = 

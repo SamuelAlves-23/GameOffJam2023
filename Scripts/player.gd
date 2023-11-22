@@ -38,6 +38,7 @@ var mail_equipped = false
 @onready var collision = $CollisionShape2D
 @onready var hurtbox_collider = $Hurtbox/CollisionShape2D
 @onready var arena = get_tree().get_first_node_in_group("Arena")
+@onready var pickup_effect = preload("res://Scenes/pickup_effect.tscn")
 
 func _process(delta):
 	var direction = get_viewport().get_mouse_position().x
@@ -120,9 +121,11 @@ func hit_state(delta):
 func _on_hurtbox_area_entered(area):
 	if state != PLAYER_STATES.DEATH:
 		if area is Pickable:
-			print("Area pickable")
 			pickable_effect(area.item_name)
 			area.queue_free()
+			var pick_up_effect_instance = pickup_effect.instantiate()
+			area.get_parent().add_child(pick_up_effect_instance)
+			pick_up_effect_instance.global_position = area.global_position  
 		else:
 			var current_pos = global_position
 			damage_recoil_vector = -(area.global_position - current_pos)

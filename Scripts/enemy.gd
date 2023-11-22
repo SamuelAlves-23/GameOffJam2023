@@ -19,6 +19,7 @@ var guarded_sprite
 var bulletContainer
 var recoil_pos
 
+@onready var damage_color_code = "ff0006"
 @onready var recoil_vector = Vector2.DOWN
 @onready var state = ENEMY_STATES.CHASE
 @onready var health_controller = $HealthController
@@ -111,5 +112,8 @@ func _on_hurtbox_area_entered(area):
 	elif enemy_type == ENEMY_TYPES.PARRY && area.scale.x >= 1:
 		state = ENEMY_STATES.DASH
 	else:
+		sprite.set_modulate("ff0006")
 		health_controller.take_damage(area.damage)
+		await get_tree().create_timer(0.1).timeout
+		sprite.set_modulate("ffffff")
 

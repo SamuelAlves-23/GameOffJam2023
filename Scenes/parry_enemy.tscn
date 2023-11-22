@@ -81,8 +81,11 @@ radius = 5.5
 size = Vector2(25, 7)
 
 [node name="ParryEnemy" type="CharacterBody2D"]
+z_index = 1
 position = Vector2(0, -16)
 collision_layer = 0
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_rowoe")
 enemy_type = 2
 

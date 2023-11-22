@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://byrhiaiowlx1w"]
+[gd_scene load_steps=3 format=3 uid="uid://byrhiaiowlx1w"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_bx24n"]
+[ext_resource type="Texture2D" uid="uid://cqb60onvkihqd" path="res://Assets/Sprites/Finished/Life-indicator.png" id="2_r6isn"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -22,12 +23,6 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "99:99"
 
-[node name="LivesLabel" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "X X X"
-
 [node name="ItemsLabel" type="Label" parent="."]
 layout_mode = 1
 offset_top = 23.475
@@ -44,3 +39,21 @@ offset_top = -23.0
 offset_right = 40.0
 grow_vertical = 0
 text = "O"
+
+[node name="LifeUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Life1" type="Sprite2D" parent="LifeUI"]
+position = Vector2(11, 11)
+texture = ExtResource("2_r6isn")
+
+[node name="Life2" type="Sprite2D" parent="LifeUI"]
+position = Vector2(27, 11)
+texture = ExtResource("2_r6isn")
+
+[node name="Life3" type="Sprite2D" parent="LifeUI"]
+position = Vector2(47, 13)
+texture = ExtResource("2_r6isn")

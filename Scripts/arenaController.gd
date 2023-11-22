@@ -10,6 +10,7 @@ extends Node2D
 @onready var hud = $UILayer/HUD
 @onready var pickableContainer = $PickableContainer
 
+
 var pickables = [
 	preload("res://Scenes/scale_mail.tscn"),
 	preload("res://Scenes/impulse_wave.tscn"),

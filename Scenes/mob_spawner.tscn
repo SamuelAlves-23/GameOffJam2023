@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://5pcy0o0ca5iy"]
+[gd_scene load_steps=3 format=3 uid="uid://5pcy0o0ca5iy"]
 
 [ext_resource type="Script" path="res://Scripts/mob_spawner.gd" id="1_ygunc"]
+[ext_resource type="Texture2D" uid="uid://b3pdab8cwy46l" path="res://Assets/Sprites/Finished/Spawn_platform-Sheet.png" id="2_xit5h"]
 
 [node name="MobSpawner" type="Node2D"]
 script = ExtResource("1_ygunc")
@@ -12,17 +13,41 @@ script = ExtResource("1_ygunc")
 [node name="Spawn_01" type="Marker2D" parent="SpawnContainer"]
 position = Vector2(246, 23)
 
+[node name="Sprite2D" type="Sprite2D" parent="SpawnContainer/Spawn_01"]
+texture = ExtResource("2_xit5h")
+hframes = 9
+
 [node name="Spawn_02" type="Marker2D" parent="SpawnContainer"]
 position = Vector2(410, 59)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpawnContainer/Spawn_02"]
+texture = ExtResource("2_xit5h")
+hframes = 9
 
 [node name="Spawn_03" type="Marker2D" parent="SpawnContainer"]
 position = Vector2(399, 224)
 
+[node name="Sprite2D" type="Sprite2D" parent="SpawnContainer/Spawn_03"]
+texture = ExtResource("2_xit5h")
+hframes = 9
+
 [node name="Spawn_04" type="Marker2D" parent="SpawnContainer"]
 position = Vector2(82, 221)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpawnContainer/Spawn_04"]
+texture = ExtResource("2_xit5h")
+hframes = 9
 
 [node name="Spawn_05" type="Marker2D" parent="SpawnContainer"]
 position = Vector2(59, 51)
 
+[node name="Sprite2D" type="Sprite2D" parent="SpawnContainer/Spawn_05"]
+texture = ExtResource("2_xit5h")
+hframes = 9
+
 [node name="Spawn_06" type="Marker2D" parent="SpawnContainer"]
 position = Vector2(59, 51)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpawnContainer/Spawn_06"]
+texture = ExtResource("2_xit5h")
+hframes = 9

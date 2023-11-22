@@ -15,6 +15,7 @@ enum SPAWNER_STATES{
 @onready var spawn_points = []
 @onready var mob_container = $MobContainer
 @onready var spawn_container = $SpawnContainer
+@onready var spawn_effect = preload("res://Scenes/spawn_effect.tscn")
 @onready var enemy_01 = preload("res://Scenes/minion_enemy.tscn")
 @onready var gun_enemy = preload("res://Scenes/gun_enemy.tscn")
 @onready var shield_enemy = preload("res://Scenes/shield_enemy.tscn")
@@ -29,7 +30,7 @@ func _ready():
 
 
 func _process(_delta):
-	if !spawn_cd && spawn_active:
+	if !spawn_cd && spawn_active && mob_container.get_child_count() <= 100:
 		rng_number = rng.randi_range(1,4)
 		match spawner_state:
 			SPAWNER_STATES.FIRST_PHASE:
@@ -65,6 +66,10 @@ func _process(_delta):
 
 func spawn_enemy(enemy):
 	var spawn_point = spawn_points.pick_random().global_position
+	var spawn_effect_instance = spawn_effect.instantiate()
 	var enemy_instance = enemy.instantiate()
+	mob_container.add_child(spawn_effect_instance)
 	mob_container.add_child(enemy_instance)
+	spawn_effect_instance.global_position = spawn_point
+	await get_tree().create_timer(0.4).timeout
 	enemy_instance.global_position = spawn_point

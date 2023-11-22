@@ -18,6 +18,7 @@ enum ENEMY_STATES{
 var guarded_sprite
 var bulletContainer
 var recoil_pos
+var bullet_scene
 
 @onready var damage_color_code = "ff0006"
 @onready var guard_color_code = "00ffff"
@@ -32,7 +33,6 @@ var recoil_pos
 @onready var dash_vector = Vector2.DOWN
 @onready var gun_cd = false
 @onready var invulnerable = false
-@onready var bullet_scene = preload("res://Scenes/enemy_bullet.tscn")
 
 @export var enemy_type = ENEMY_TYPES.MINION
 @export var ACCELERATION = 300
@@ -46,6 +46,7 @@ func _ready():
 		guarded_sprite = $GuardedSprite
 	elif enemy_type == ENEMY_TYPES.GUN:
 		bulletContainer = $BulletContainer
+		bullet_scene = load("res://Scenes/enemy_bullet.tscn")
 
 func _physics_process(delta):
 	match state:
@@ -127,4 +128,3 @@ func _on_hurtbox_area_entered(area):
 		health_controller.take_damage(area.damage)
 		await get_tree().create_timer(0.1).timeout
 		sprite.set_modulate("ffffff")
-

@@ -83,7 +83,8 @@ size = Vector2(25, 7)
 [node name="ParryEnemy" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(0, -16)
-collision_layer = 0
+collision_layer = 4
+collision_mask = 5
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_rowoe")
@@ -132,7 +133,14 @@ collision_mask = 16
 position = Vector2(-3.5, 11.5)
 shape = SubResource("RectangleShape2D_34udr")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

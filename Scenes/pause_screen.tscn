@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2tbpda0xg4dh"]
+
+[ext_resource type="Script" path="res://Scripts/PauseScreen.gd" id="1_lfhss"]
+[ext_resource type="Texture2D" uid="uid://tbrxaonj2xd" path="res://Assets/Sprites/Finished/ResumeButton.png" id="2_gjpk2"]
+[ext_resource type="Texture2D" uid="uid://4bg2y2gysmbf" path="res://Assets/Sprites/Finished/RetryButton.png" id="2_gs2o6"]
+[ext_resource type="Texture2D" uid="uid://ya0mnk2yu7wd" path="res://Assets/Sprites/Finished/ResumeButton_pressed.png" id="3_4jtir"]
+[ext_resource type="Texture2D" uid="uid://dpsq21xusgkam" path="res://Assets/Sprites/Finished/RetryButton_pressed.png" id="3_lhwqt"]
+[ext_resource type="Texture2D" uid="uid://dlyfebvjoal3a" path="res://Assets/Sprites/Finished/TitleButton.png" id="4_hdvdc"]
+[ext_resource type="Texture2D" uid="uid://3ycfycx7y171" path="res://Assets/Sprites/Finished/TitleButton_pressed.png" id="5_b2agq"]
+
+[node name="PauseScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lfhss")
+
+[node name="ResumeButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -18.0
+offset_right = 31.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_gjpk2")
+texture_pressed = ExtResource("3_4jtir")
+
+[node name="RetryButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = 13.0
+offset_right = 31.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_gs2o6")
+texture_pressed = ExtResource("3_lhwqt")
+
+[node name="TitleButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = 44.0
+offset_right = 31.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_hdvdc")
+texture_pressed = ExtResource("5_b2agq")
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="TitleButton" to="." method="_on_title_button_pressed"]

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds4cybt5yic6i"]
+[gd_scene load_steps=6 format=3 uid="uid://ds4cybt5yic6i"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenuUI.gd" id="1_tptk4"]
-[ext_resource type="FontFile" uid="uid://bhqchek0oi41q" path="res://Assets/Fonts/pixelart.ttf" id="2_rdeqd"]
+[ext_resource type="Texture2D" uid="uid://4caqi6o7xylv" path="res://Assets/Sprites/Finished/Button.png" id="2_y5f21"]
+[ext_resource type="Texture2D" uid="uid://4d6j7cs4cyk6" path="res://Assets/Sprites/Finished/Button_pressed.png" id="3_dbd2a"]
+[ext_resource type="Texture2D" uid="uid://b0a8vtvr18epv" path="res://Assets/Sprites/Finished/ExitButton.png" id="4_usuul"]
+[ext_resource type="Texture2D" uid="uid://c7mr6kmoturfg" path="res://Assets/Sprites/Finished/ExitButton_pressed.png" id="5_53e3y"]
 
 [node name="MainMenuUI" type="Control"]
 layout_mode = 3
@@ -12,37 +15,39 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tptk4")
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.5
-offset_top = -55.68
-offset_right = 23.5001
-offset_bottom = -24.68
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -106.0
+offset_right = 31.0001
+offset_bottom = -81.9999
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_rdeqd")
-text = "PLAY"
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("2_y5f21")
+texture_pressed = ExtResource("3_dbd2a")
 
-[node name="ExitButton" type="Button" parent="."]
+[node name="ExitButton" type="TextureButton" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -63.02
+offset_right = 31.0
+offset_bottom = -23.02
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_rdeqd")
-text = "EXIT"
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("4_usuul")
+texture_pressed = ExtResource("5_53e3y")
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="button_up" from="PlayButton" to="." method="_on_play_button_button_up"]
+[connection signal="button_up" from="ExitButton" to="." method="_on_exit_button_button_up"]

@@ -4,6 +4,7 @@ extends Node2D
 
 @onready var score = 0
 @onready var death_screen = $UILayer/DeathScreen
+@onready var pause_screen = $UILayer/PauseScreen
 @onready var mob_spawner = $MobSpawner
 @onready var mob_container = $MobSpawner/MobContainer
 @onready var player = $Player
@@ -42,6 +43,13 @@ func _process(delta):
 		death_screen.visible = true
 	if score != 0 && score%10 == 0:
 		pass
+	if Input.is_action_just_pressed("Pause"):
+		if Engine.time_scale == 1:
+			Engine.time_scale = 0
+			pause_screen.show()
+		else:
+			Engine.time_scale = 1
+			pause_screen.hide()
 
 func _on_level_timer_timeout():
 	if !level_end:

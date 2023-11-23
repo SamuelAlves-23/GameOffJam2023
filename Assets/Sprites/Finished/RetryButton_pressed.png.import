@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cse80juplralr"
-path="res://.godot/imported/Tileset.png-9ffe252ba3bcd0e2d85a7f558f1823df.ctex"
+uid="uid://dpsq21xusgkam"
+path="res://.godot/imported/RetryButton_pressed.png-568c11344db5b08dd033894984d44135.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Finished/Tileset.png"
-dest_files=["res://.godot/imported/Tileset.png-9ffe252ba3bcd0e2d85a7f558f1823df.ctex"]
+source_file="res://Assets/Sprites/Finished/RetryButton_pressed.png"
+dest_files=["res://.godot/imported/RetryButton_pressed.png-568c11344db5b08dd033894984d44135.ctex"]
 
 [params]
 

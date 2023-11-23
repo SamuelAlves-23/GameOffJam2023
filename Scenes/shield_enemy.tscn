@@ -155,7 +155,9 @@ animations = [{
 [node name="ShieldEnemy" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(0, -16)
-collision_layer = 0
+collision_layer = 4
+collision_mask = 5
+motion_mode = 1
 script = ExtResource("1_l44cr")
 enemy_type = 1
 
@@ -208,7 +210,13 @@ sprite_frames = SubResource("SpriteFrames_pw3ms")
 autoplay = "default"
 frame_progress = 0.189642
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

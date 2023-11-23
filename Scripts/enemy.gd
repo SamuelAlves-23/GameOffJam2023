@@ -41,6 +41,8 @@ var bullet_scene
 @export var RECOIL_SPEED = 10000
 @export var score_points = 0
 
+@onready var nav_agent = $NavigationAgent2D as NavigationAgent2D
+
 func _ready():
 	if enemy_type == ENEMY_TYPES.SHIELD:
 		guarded_sprite = $GuardedSprite
@@ -65,13 +67,18 @@ func paralyzed_state():
 	await get_tree().create_timer(5).timeout
 	state = ENEMY_STATES.CHASE
 
-func chase_state(delta):
-	var direction = (player.global_position - global_position).normalized()
-	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+func chase_state(delta : float):
+#	var direction = (player.global_position - global_position).normalized()
+	var dir = to_local(nav_agent.get_next_path_position()).normalized()
+	
+	velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
 	sprite.flip_h = velocity.x > 0
 	if enemy_type == ENEMY_TYPES.GUN && !gun_cd:
 		state = ENEMY_STATES.SHOOT
 	move_and_slide()
+
+func make_path() -> void:
+	nav_agent.target_position = player.global_position
 
 func recoil_state(delta):
 	var current_pos = global_position
@@ -128,3 +135,7 @@ func _on_hurtbox_area_entered(area):
 		health_controller.take_damage(area.damage)
 		await get_tree().create_timer(0.1).timeout
 		sprite.set_modulate("ffffff")
+
+
+func _on_timer_timeout():
+	make_path()

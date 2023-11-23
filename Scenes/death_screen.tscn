@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8cwo4qpfris7"]
+[gd_scene load_steps=6 format=3 uid="uid://b8cwo4qpfris7"]
 
 [ext_resource type="Script" path="res://Scripts/death_screen.gd" id="1_3jbva"]
+[ext_resource type="Texture2D" uid="uid://4bg2y2gysmbf" path="res://Assets/Sprites/Finished/RetryButton.png" id="2_5ohvc"]
+[ext_resource type="Texture2D" uid="uid://dpsq21xusgkam" path="res://Assets/Sprites/Finished/RetryButton_pressed.png" id="3_pty75"]
+[ext_resource type="Texture2D" uid="uid://dlyfebvjoal3a" path="res://Assets/Sprites/Finished/TitleButton.png" id="4_wenhc"]
+[ext_resource type="Texture2D" uid="uid://3ycfycx7y171" path="res://Assets/Sprites/Finished/TitleButton_pressed.png" id="5_gqc0k"]
 
 [node name="DeathScreen" type="Control"]
 layout_mode = 3
@@ -11,45 +15,37 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3jbva")
 
-[node name="Panel" type="Panel" parent="."]
-modulate = Color(0.0588235, 0.00392157, 0.00392157, 0.658824)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RetryButton" type="Button" parent="Panel"]
+[node name="RetryButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -28.0
-offset_top = -54.0
-offset_right = 28.0
-offset_bottom = -23.0
+offset_left = -31.0
+offset_top = -50.32
+offset_right = 31.0
+offset_bottom = -10.3202
 grow_horizontal = 2
 grow_vertical = 2
-text = "RETRY"
+texture_normal = ExtResource("2_5ohvc")
+texture_pressed = ExtResource("3_pty75")
 
-[node name="MainMenuButton" type="Button" parent="Panel"]
+[node name="TitleButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = -31.0
+offset_top = -20.0
+offset_right = 31.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "MAIN MENU
-"
+texture_normal = ExtResource("4_wenhc")
+texture_pressed = ExtResource("5_gqc0k")
 
-[connection signal="pressed" from="Panel/RetryButton" to="." method="_on_retry_button_pressed"]
-[connection signal="pressed" from="Panel/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="TitleButton" to="." method="_on_title_button_pressed"]

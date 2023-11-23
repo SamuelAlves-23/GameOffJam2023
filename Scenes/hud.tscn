@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://byrhiaiowlx1w"]
+[gd_scene load_steps=8 format=3 uid="uid://byrhiaiowlx1w"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_bx24n"]
+[ext_resource type="FontFile" uid="uid://bhqchek0oi41q" path="res://Assets/Fonts/pixelart.ttf" id="2_r2ex0"]
 [ext_resource type="Texture2D" uid="uid://cqb60onvkihqd" path="res://Assets/Sprites/Finished/Life-indicator.png" id="2_r6isn"]
+[ext_resource type="Texture2D" uid="uid://mdon61lopmri" path="res://Assets/Sprites/Finished/Reload.png" id="4_w4w77"]
+[ext_resource type="Texture2D" uid="uid://obckuynl6g7b" path="res://Assets/Sprites/Finished/Paralysis_UI.png" id="5_630nw"]
+[ext_resource type="Texture2D" uid="uid://ni81vnc22ei8" path="res://Assets/Sprites/Finished/Uncap_UI.png" id="6_xt7ao"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jyntd"]
+font = ExtResource("2_r2ex0")
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -22,23 +29,7 @@ offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
 text = "99:99"
-
-[node name="ItemsLabel" type="Label" parent="."]
-layout_mode = 1
-offset_top = 23.475
-offset_right = 27.0
-offset_bottom = 49.475
-text = "xxx"
-
-[node name="ReloadLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
-grow_vertical = 0
-text = "O"
+label_settings = SubResource("LabelSettings_jyntd")
 
 [node name="LifeUI" type="Control" parent="."]
 layout_mode = 1
@@ -47,13 +38,45 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Life1" type="Sprite2D" parent="LifeUI"]
-position = Vector2(11, 11)
+position = Vector2(15, 12)
+scale = Vector2(2, 2)
 texture = ExtResource("2_r6isn")
 
 [node name="Life2" type="Sprite2D" parent="LifeUI"]
-position = Vector2(27, 11)
+position = Vector2(45, 12)
+scale = Vector2(2, 2)
 texture = ExtResource("2_r6isn")
 
 [node name="Life3" type="Sprite2D" parent="LifeUI"]
-position = Vector2(47, 13)
+position = Vector2(75, 12)
+scale = Vector2(2, 2)
 texture = ExtResource("2_r6isn")
+
+[node name="ReloadUI" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 28.0
+offset_right = 29.0
+offset_bottom = 36.0
+value = 33.0
+texture_under = ExtResource("4_w4w77")
+texture_progress = ExtResource("4_w4w77")
+tint_under = Color(1, 1, 1, 0.235294)
+
+[node name="ParalysisUI" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 42.0
+offset_right = 48.0
+offset_bottom = 82.0
+value = 100.0
+texture_progress = ExtResource("5_630nw")
+
+[node name="UncapUI" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 46.0
+offset_right = 77.0
+offset_bottom = 86.0
+value = 100.0
+texture_progress = ExtResource("6_xt7ao")

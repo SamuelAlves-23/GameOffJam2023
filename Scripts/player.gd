@@ -14,8 +14,6 @@ var damage_recoil_vector
 var recoil_vector = Vector2.DOWN
 var input_vector = Vector2.ZERO
 
-# PICKABLES
-var mail_equipped = false
 
 @export var ACCELERATION = 500
 @export var MAX_SPEED = 123
@@ -92,7 +90,8 @@ func move_state(delta):
 		if gun.scale > Vector2.ONE:
 			state = PLAYER_STATES.RECOIL
 		gun_cd = true
-		await get_tree().create_timer(gun.scale.x - 1).timeout
+		arena.hud.set_reload_ui(gun.scale.x - cd_cap)
+		await get_tree().create_timer(gun.scale.x - cd_cap).timeout
 		gun_cd = false
 
 func recoil_state(delta, gun_scale):
@@ -150,6 +149,7 @@ func pickable_effect(pickable):
 				waveCollider.scale = Vector2.ONE
 				break
 	elif pickable == "SHOCK":
+		arena.hud.set_item_ui("SHOCK")
 		for i in arena.mob_container.get_children():
 			i.state = i.ENEMY_STATES.PARALYZED
 	elif pickable == "DEATH":
@@ -166,8 +166,9 @@ func pickable_effect(pickable):
 				break
 	elif pickable == "UNCAP":
 		cd_cap = 0.5
+		arena.hud.set_item_ui("UNCAP")
 		await get_tree().create_timer(5).timeout
-		cd_cap = 0.2
+		cd_cap = 0.3
 
 
 func _on_wave_area_area_entered(area):

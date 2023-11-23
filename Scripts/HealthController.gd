@@ -12,8 +12,8 @@ func take_damage(damage):
 		
 	
 	if parent is Player && !parent.invulnerable:
+		arena.hud.set_health_ui(health)
 		parent.invulnerable = true
-		print(parent.invulnerable)
 		for i in 10:
 			parent.sprite.visible = false
 			await await get_tree().create_timer(0.1).timeout
@@ -21,7 +21,7 @@ func take_damage(damage):
 			await await get_tree().create_timer(0.1).timeout
 		
 		parent.invulnerable = false
-		print(parent.invulnerable)
+	
 	if health <= 0 && parent is Enemy:
 		arena.add_score()
 		die()
@@ -31,6 +31,7 @@ func take_damage(damage):
 func heal():
 	if health < 3:
 		health += 1
+		arena.hud.set_health_ui(health)
 
 func die():
 	get_parent().queue_free()

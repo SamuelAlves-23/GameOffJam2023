@@ -27,6 +27,7 @@ collision_layer = 4
 collision_mask = 517
 motion_mode = 1
 script = ExtResource("1_6m3ak")
+MAX_SPEED = 40
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_h500v")
@@ -66,6 +67,7 @@ position = Vector2(1, 5)
 shape = SubResource("CapsuleShape2D_yah7r")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

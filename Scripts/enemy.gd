@@ -28,11 +28,11 @@ var bullet_scene
 @onready var sprite = $Sprite2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var guarded = true
-@onready var guard_life = 20
 @onready var dash_speed = 120
 @onready var dash_vector = Vector2.DOWN
 @onready var gun_cd = false
 @onready var invulnerable = false
+@onready var nav_agent = $NavigationAgent2D as NavigationAgent2D
 
 @export var enemy_type = ENEMY_TYPES.MINION
 @export var ACCELERATION = 300
@@ -41,7 +41,6 @@ var bullet_scene
 @export var RECOIL_SPEED = 10000
 @export var score_points = 0
 
-@onready var nav_agent = $NavigationAgent2D as NavigationAgent2D
 
 func _ready():
 	if enemy_type == ENEMY_TYPES.SHIELD:
@@ -90,6 +89,7 @@ func recoil_state(delta):
 
 func shoot_state(delta):
 	var bullet = bullet_scene.instantiate()
+	AudioPlayer.play_sfx("enemy_shot")
 	bullet.damage_multiplier = 1
 	bulletContainer.add_child(bullet)
 	bullet.global_position = global_position
@@ -113,17 +113,18 @@ func dash_state(delta):
 func _on_hurtbox_area_entered(area):
 	if enemy_type == ENEMY_TYPES.SHIELD && guarded:
 		if area.scale.x > 1:
-			guard_life -= area.damage
+			health_controller.take_damage(area.damage)
 			guarded_sprite.set_modulate(damage_color_code)
 			await get_tree().create_timer(0.1).timeout
 			guarded_sprite.set_modulate("ffffff")
-			if guard_life <= 0:
+			if health_controller.health <= 40:
 				var death_effect_instance = health_controller.death_effect.instantiate()
 				get_parent().add_child(death_effect_instance)
 				death_effect_instance.global_position = global_position
 				guarded = false
 				guarded_sprite.visible = false
 				sprite.visible = true
+				MAX_SPEED = 35
 		else:
 			guarded_sprite.set_modulate(guard_color_code)
 			await get_tree().create_timer(0.1).timeout

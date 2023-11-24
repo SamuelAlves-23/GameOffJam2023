@@ -11,7 +11,8 @@ func take_damage(damage):
 		health -= damage
 		
 	
-	if parent is Player && !parent.invulnerable:
+	if parent is Player && !parent.invulnerable && health > 0:
+		AudioPlayer.play_sfx("hurt")
 		arena.hud.set_health_ui(health)
 		parent.invulnerable = true
 		for i in 10:
@@ -23,6 +24,7 @@ func take_damage(damage):
 		parent.invulnerable = false
 	
 	if health <= 0 && parent is Enemy:
+		AudioPlayer.play_sfx("enemy_death")
 		arena.add_score()
 		die()
 		if arena.score % 10 == 0:

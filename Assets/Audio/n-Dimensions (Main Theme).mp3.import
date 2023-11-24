@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bydt0qf4e7t0c"
+path="res://.godot/imported/n-Dimensions (Main Theme).mp3-23060ca99fd8bfd67befff70d3af9002.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/n-Dimensions (Main Theme).mp3"
+dest_files=["res://.godot/imported/n-Dimensions (Main Theme).mp3-23060ca99fd8bfd67befff70d3af9002.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

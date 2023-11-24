@@ -1,92 +1,51 @@
 [gd_scene load_steps=15 format=3 uid="uid://d06x40l1epb15"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_li8pp"]
-[ext_resource type="Texture2D" uid="uid://bot3wi8yypimt" path="res://Assets/Sprites/Finished/Player-Sheet.png" id="2_4yj4g"]
+[ext_resource type="Texture2D" uid="uid://ckgelhcpxtr25" path="res://Assets/Sprites/Finished/Player.png" id="2_4c8nx"]
 [ext_resource type="PackedScene" uid="uid://b5pfhg4sii5g8" path="res://Scenes/gun.tscn" id="3_c8h7p"]
 [ext_resource type="PackedScene" uid="uid://kbfhtgtgpfpl" path="res://Scenes/hurtbox.tscn" id="4_j83bh"]
 [ext_resource type="PackedScene" uid="uid://cowl2mu74e3ng" path="res://Scenes/health_controller.tscn" id="5_drfry"]
+[ext_resource type="Texture2D" uid="uid://cxasdondql3yl" path="res://Assets/Sprites/Finished/FireAnimation-Sheet.png" id="6_xnouq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g13kn"]
-radius = 5.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfjpd"]
+atlas = ExtResource("6_xnouq")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="Animation" id="Animation_il3ki"]
-resource_name = "Dash"
-length = 0.7
+[sub_resource type="AtlasTexture" id="AtlasTexture_hou4f"]
+atlas = ExtResource("6_xnouq")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="Animation" id="Animation_0lo6k"]
-resource_name = "Move1Life"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [10, 11, 12, 13, 14, 17]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qhjo"]
+atlas = ExtResource("6_xnouq")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="Animation" id="Animation_n2nsd"]
-resource_name = "Move2Lives"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [5, 6, 7, 8, 9, 11]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1mbd"]
+atlas = ExtResource("6_xnouq")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="Animation" id="Animation_wxrg8"]
-resource_name = "Move3Lives"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ww0o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfjpd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hou4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qhjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1mbd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
 
-[sub_resource type="Animation" id="Animation_v6e83"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tfs1x"]
-_data = {
-"Dash": SubResource("Animation_il3ki"),
-"Move1Life": SubResource("Animation_0lo6k"),
-"Move2Lives": SubResource("Animation_n2nsd"),
-"Move3Lives": SubResource("Animation_wxrg8"),
-"RESET": SubResource("Animation_v6e83")
-}
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y348y"]
+radius = 2.0
+height = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7j68"]
 size = Vector2(12, 22)
@@ -98,25 +57,22 @@ radius = 1.0
 position = Vector2(0, -16)
 collision_layer = 2
 script = ExtResource("1_li8pp")
-cd_cap = 0.3
+
+[node name="FireEffect" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8ww0o")
+autoplay = "default"
+frame_progress = 0.233614
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_4yj4g")
-hframes = 6
-vframes = 3
+texture = ExtResource("2_4c8nx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
-shape = SubResource("CircleShape2D_g13kn")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Move3Lives"
-libraries = {
-"": SubResource("AnimationLibrary_tfs1x")
-}
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_y348y")
 
 [node name="Gun" parent="." instance=ExtResource("3_c8h7p")]
-position = Vector2(-3, -2)
+position = Vector2(-2, -3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = -10

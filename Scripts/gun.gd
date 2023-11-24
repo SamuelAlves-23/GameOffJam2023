@@ -16,6 +16,7 @@ func _physics_process(delta):
 		rotate(get_angle_to(get_global_mouse_position()))
 
 func shoot():
+	AudioPlayer.play_sfx("player_shot")
 	var spread_degree_max = current_spread * 0.5
 	var spread_radians_actual = deg_to_rad(randf_range(-spread_degree_max, spread_degree_max))
 	var spread_increment = max_spread * 0.1

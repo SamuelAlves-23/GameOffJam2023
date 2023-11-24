@@ -89,6 +89,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_rowoe")
 enemy_type = 2
+MAX_SPEED = 35
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_5ydlu")
@@ -109,7 +110,7 @@ libraries = {
 }
 
 [node name="HealthController" parent="." instance=ExtResource("3_cv7rg")]
-health = 50
+health = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)

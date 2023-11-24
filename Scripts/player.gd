@@ -5,7 +5,6 @@ enum PLAYER_STATES{
 	MOVE,
 	RECOIL,
 	HIT,
-	DASH,
 	DEATH
 }
 
@@ -19,18 +18,18 @@ var input_vector = Vector2.ZERO
 @export var MAX_SPEED = 123
 @export var RECOIL_SPEED = 10000
 @export var FRICTION  = 500
-@export var speed = 100.0
+@export var speed = 120.0
 @export var dash_speed = 6
 @export var gun_cd = false
 @export var dash_cd = false
 @export var size_variation = Vector2(0.5,0.5)
-@export var cd_cap = 0.2
+@export var cd_cap = 0.5
 @export var death_wave = false
 
 @onready var invulnerable = false
 @onready var waveCollider = $WaveArea/WaveCollider
-@onready var animationPlayer = $AnimationPlayer
 @onready var sprite = $Sprite2D
+@onready var fire_effect = $FireEffect
 @onready var gun = $Gun
 @onready var health_controller = $HealthController
 @onready var collision = $CollisionShape2D
@@ -50,36 +49,24 @@ func _process(delta):
 			recoil_state(delta, gun.scale)
 		PLAYER_STATES.HIT:
 			hit_state(delta)
-		PLAYER_STATES.DASH:
-			dash_state(delta)
 		PLAYER_STATES.DEATH:
-			sprite.visible = false
-			gun.visible = false 
+			fire_effect.hide()
+			sprite.hide()
+			gun.hide() 
 			
 
 func move_state(delta):
 	var direction = get_global_mouse_position().x
-#	input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
-		if health_controller.health >=3:
-			animationPlayer.play("Move3Lives")
-		elif health_controller.health == 2:
-			animationPlayer.play("Move2Lives")
-		elif health_controller.health == 1:
-			animationPlayer.play("Move1Life")
-	
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
-#		animationPlayer.stop()
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	move_and_slide()
-	if Input.is_action_just_pressed("dash") && !dash_cd:
-		state = PLAYER_STATES.DASH
 	if Input.is_action_just_pressed("increase_bullet_size"):
 		gun.change_gun_size(size_variation)
 	if Input.is_action_just_pressed("decrease_bullet_size"):
@@ -90,8 +77,8 @@ func move_state(delta):
 		if gun.scale > Vector2.ONE:
 			state = PLAYER_STATES.RECOIL
 		gun_cd = true
-		arena.hud.set_reload_ui(gun.scale.x - cd_cap)
-		await get_tree().create_timer(gun.scale.x - cd_cap).timeout
+		arena.hud.set_reload_ui(cd_cap * gun.scale.x)
+		await get_tree().create_timer(cd_cap * gun.scale.x).timeout
 		gun_cd = false
 
 func recoil_state(delta, gun_scale):
@@ -99,18 +86,8 @@ func recoil_state(delta, gun_scale):
 	recoil_vector = -(get_global_mouse_position() - current_pos)
 	recoil_vector = recoil_vector.normalized()
 	velocity = RECOIL_SPEED * recoil_vector * delta * gun_scale
-	animationPlayer.stop()
 	move_and_slide()
 	state = PLAYER_STATES.MOVE
-
-func dash_state(delta):
-	velocity = RECOIL_SPEED * input_vector * delta
-	animationPlayer.play("Dash")
-	move_and_slide()
-	state = PLAYER_STATES.MOVE
-	dash_cd = true
-	await get_tree().create_timer(3).timeout
-	dash_cd = false
 
 func hit_state(delta):
 	velocity = RECOIL_SPEED * damage_recoil_vector * delta * 3
@@ -120,6 +97,7 @@ func hit_state(delta):
 func _on_hurtbox_area_entered(area):
 	if state != PLAYER_STATES.DEATH:
 		if area is Pickable:
+			AudioPlayer.play_sfx("pickup")
 			pickable_effect(area.item_name)
 			area.queue_free()
 			var pick_up_effect_instance = pickup_effect.instantiate()
@@ -165,10 +143,10 @@ func pickable_effect(pickable):
 				waveCollider.scale = Vector2.ONE
 				break
 	elif pickable == "UNCAP":
-		cd_cap = 0.5
+		cd_cap = 0.1
 		arena.hud.set_item_ui("UNCAP")
 		await get_tree().create_timer(5).timeout
-		cd_cap = 0.3
+		cd_cap = 0.5
 
 
 func _on_wave_area_area_entered(area):

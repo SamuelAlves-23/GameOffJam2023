@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var level_time: float = 120
+@export var level_time: float = 180
 
 @onready var score = 0
 @onready var death_screen = $UILayer/DeathScreen

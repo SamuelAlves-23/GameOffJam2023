@@ -3,7 +3,7 @@ class_name Bullet
 @export var direction = Vector2.ZERO
 @export var speed = 600
 @export var vanish_time = 0.5
-@export var damage_multiplier = 10
+@export var damage_multiplier = 20
 
 #@onready var walls = get_tree().get_first_node_in_group("Walls")
 @onready var vanish_effect = preload("res://Scenes/vanish_effect.tscn")
@@ -23,7 +23,7 @@ func _process(delta):
 
 func _on_area_entered(area):
 	if scale > Vector2.ONE:
-		scale -= Vector2(0.25,0.25)
+		scale -= Vector2(0.1,0.1)
 	else:
 		queue_free()
 

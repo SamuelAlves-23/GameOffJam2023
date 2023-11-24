@@ -4,6 +4,7 @@ extends Control
 @onready var reload_ui = $ReloadUI
 @onready var paralysis_ui = $ParalysisUI
 @onready var uncap_ui = $UncapUI
+@onready var score_label = $ScoreUI/ScoreLabel
 
 func _ready():
 	reload_ui.value = 100
@@ -31,6 +32,9 @@ func set_item_ui(item):
 		for i in 100:
 			uncap_ui.value -= 1
 			await get_tree().create_timer(0.05).timeout
+
+func set_score_label(value):
+	score_label.text = str(value)
 
 func set_health_ui(value):
 	

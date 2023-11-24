@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://byrhiaiowlx1w"]
+[gd_scene load_steps=10 format=3 uid="uid://byrhiaiowlx1w"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_bx24n"]
 [ext_resource type="FontFile" uid="uid://bhqchek0oi41q" path="res://Assets/Fonts/pixelart.ttf" id="2_r2ex0"]
@@ -6,8 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://mdon61lopmri" path="res://Assets/Sprites/Finished/Reload.png" id="4_w4w77"]
 [ext_resource type="Texture2D" uid="uid://obckuynl6g7b" path="res://Assets/Sprites/Finished/Paralysis_UI.png" id="5_630nw"]
 [ext_resource type="Texture2D" uid="uid://ni81vnc22ei8" path="res://Assets/Sprites/Finished/Uncap_UI.png" id="6_xt7ao"]
+[ext_resource type="Texture2D" uid="uid://c55cwvc445fxx" path="res://Assets/Sprites/Finished/Score.png" id="7_0end3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jyntd"]
+font = ExtResource("2_r2ex0")
+
+[sub_resource type="LabelSettings" id="LabelSettings_xx2u7"]
 font = ExtResource("2_r2ex0")
 
 [node name="HUD" type="Control"]
@@ -80,3 +84,28 @@ offset_right = 77.0
 offset_bottom = 86.0
 value = 100.0
 texture_progress = ExtResource("6_xt7ao")
+
+[node name="ScoreUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="ScoreUI"]
+position = Vector2(17, 13)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_0end3")
+
+[node name="ScoreLabel" type="Label" parent="ScoreUI"]
+layout_mode = 0
+offset_left = -34.0
+offset_top = 5.0
+offset_right = 6.0
+offset_bottom = 22.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_xx2u7")
+horizontal_alignment = 2

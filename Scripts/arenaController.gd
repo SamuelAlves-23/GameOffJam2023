@@ -5,6 +5,7 @@ extends Node2D
 @onready var score = 0
 @onready var death_screen = $UILayer/DeathScreen
 @onready var pause_screen = $UILayer/PauseScreen
+@onready var win_screen = $UILayer/WinScreen
 @onready var mob_spawner = $MobSpawner
 @onready var mob_container = $MobSpawner/MobContainer
 @onready var player = $Player
@@ -67,11 +68,14 @@ func _on_level_timer_timeout():
 			print("ESTADO 2")
 		
 		if time_left <= 0:
-			pass
+			Engine.time_scale = 0
+			AudioPlayer.play_sfx("win")
+			win_screen.show()
+			
 
 func add_score():
 	score += 1
-	print("PUNTUACION: " + str(score))
+	hud.set_score_label(score)
 
 
 func spawn_pickable(node_pos):

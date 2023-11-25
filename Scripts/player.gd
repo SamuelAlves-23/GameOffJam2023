@@ -128,8 +128,11 @@ func pickable_effect(pickable):
 				break
 	elif pickable == "SHOCK":
 		arena.hud.set_item_ui("SHOCK")
+		arena.mob_spawner.spawn_active = false
 		for i in arena.mob_container.get_children():
 			i.state = i.ENEMY_STATES.PARALYZED
+		await get_tree().create_timer(5).timeout
+		arena.mob_spawner.spawn_active = true
 	elif pickable == "DEATH":
 		var limit = 0
 		while true:

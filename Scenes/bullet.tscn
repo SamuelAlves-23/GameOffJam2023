@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cu2xpfq8jciq3" path="res://Assets/Sprites/Finished/Player-bullet.png" id="2_r6ioh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00ui5"]
-radius = 3.0
-height = 10.0
+radius = 2.0
+height = 4.0
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 8

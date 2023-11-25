@@ -44,7 +44,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y348y"]
-radius = 2.0
+radius = 7.0
 height = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7j68"]
@@ -67,8 +67,7 @@ frame_progress = 0.233614
 texture = ExtResource("2_4c8nx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-rotation = 1.5708
+rotation = 1.57079
 shape = SubResource("CapsuleShape2D_y348y")
 
 [node name="Gun" parent="." instance=ExtResource("3_c8h7p")]

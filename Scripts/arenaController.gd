@@ -3,6 +3,7 @@ extends Node2D
 @export var level_time: float = 180
 
 @onready var score = 0
+@onready var winner = false
 @onready var death_screen = $UILayer/DeathScreen
 @onready var pause_screen = $UILayer/PauseScreen
 @onready var win_screen = $UILayer/WinScreen
@@ -44,7 +45,7 @@ func _process(delta):
 		death_screen.visible = true
 	if score != 0 && score%10 == 0:
 		pass
-	if Input.is_action_just_pressed("Pause"):
+	if Input.is_action_just_pressed("Pause") && !winner:
 		if Engine.time_scale == 1:
 			Engine.time_scale = 0
 			pause_screen.show()
@@ -69,6 +70,7 @@ func _on_level_timer_timeout():
 		
 		if time_left <= 0:
 			Engine.time_scale = 0
+			winner = true
 			AudioPlayer.play_sfx("win")
 			win_screen.show()
 			

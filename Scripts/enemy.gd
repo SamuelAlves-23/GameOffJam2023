@@ -67,7 +67,6 @@ func paralyzed_state():
 	state = ENEMY_STATES.CHASE
 
 func chase_state(delta : float):
-#	var direction = (player.global_position - global_position).normalized()
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
 	
 	velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)

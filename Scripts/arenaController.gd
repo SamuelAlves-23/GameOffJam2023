@@ -7,6 +7,7 @@ extends Node2D
 @onready var death_screen = $UILayer/DeathScreen
 @onready var pause_screen = $UILayer/PauseScreen
 @onready var win_screen = $UILayer/WinScreen
+@onready var htp_screen = $UILayer/HTPScreen
 @onready var mob_spawner = $MobSpawner
 @onready var mob_container = $MobSpawner/MobContainer
 @onready var player = $Player
@@ -58,10 +59,10 @@ func _on_level_timer_timeout():
 		time_left -= 1
 		level_progress = time_left / level_time
 		hud.set_time_label(time_left)
-		if level_progress < 0.25:
+		if level_progress < 0.30:
 			mob_spawner.spawner_state = mob_spawner.SPAWNER_STATES.FOURTH_PHASE
 			print("ESTADO 4")
-		elif level_progress < 0.5 && level_progress >= 0.25:
+		elif level_progress < 0.5 && level_progress >= 0.30:
 			mob_spawner.spawner_state = mob_spawner.SPAWNER_STATES.THIRD_PHASE
 			print("ESTADO 3")
 		elif level_progress < 0.75 && level_progress >= 0.5:

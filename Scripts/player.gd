@@ -36,6 +36,7 @@ var input_vector = Vector2.ZERO
 @onready var hurtbox_collider = $Hurtbox/CollisionShape2D
 @onready var arena = get_tree().get_first_node_in_group("Arena")
 @onready var pickup_effect = preload("res://Scenes/pickup_effect.tscn")
+@onready var wave_effect = preload("res://Scenes/death_effect.tscn") 
 
 func _process(delta):
 	var direction = get_global_mouse_position().x
@@ -72,7 +73,7 @@ func move_state(delta):
 	if Input.is_action_just_pressed("decrease_bullet_size"):
 		gun.change_gun_size(-size_variation)
 	
-	if Input.is_action_pressed("shoot") && !gun_cd:
+	if Input.is_action_pressed("shoot") && !gun_cd && Engine.time_scale == 1:
 		gun.shoot()
 		if gun.scale > Vector2.ONE:
 			state = PLAYER_STATES.RECOIL
@@ -117,6 +118,10 @@ func pickable_effect(pickable):
 	if pickable == "INGOT":
 		health_controller.heal()
 	elif pickable == "WAVE":
+		var wave_instance = wave_effect.instantiate()
+		add_child(wave_instance)
+		wave_instance.global_position = global_position
+		wave_instance.scale = Vector2(10,10)
 		var limit = 0
 		while true:
 			waveCollider.scale +=Vector2(2.5,2.5)
@@ -134,6 +139,10 @@ func pickable_effect(pickable):
 		await get_tree().create_timer(5).timeout
 		arena.mob_spawner.spawn_active = true
 	elif pickable == "DEATH":
+		var wave_instance = wave_effect.instantiate()
+		add_child(wave_instance)
+		wave_instance.global_position = global_position
+		wave_instance.scale = Vector2(10,10)
 		var limit = 0
 		while true:
 			death_wave = true

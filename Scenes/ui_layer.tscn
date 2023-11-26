@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://he8m26jokd53"]
+[gd_scene load_steps=6 format=3 uid="uid://he8m26jokd53"]
 
 [ext_resource type="PackedScene" uid="uid://byrhiaiowlx1w" path="res://Scenes/hud.tscn" id="1_aqlh7"]
 [ext_resource type="PackedScene" uid="uid://b8cwo4qpfris7" path="res://Scenes/death_screen.tscn" id="2_cdxvo"]
 [ext_resource type="PackedScene" uid="uid://b2tbpda0xg4dh" path="res://Scenes/pause_screen.tscn" id="3_00gk8"]
 [ext_resource type="PackedScene" uid="uid://bhkwiijdlg0k4" path="res://Scenes/win_screen.tscn" id="4_635gd"]
+[ext_resource type="PackedScene" uid="uid://c4b0wvpaw5d7y" path="res://Scenes/htp_screen.tscn" id="5_vt0sp"]
 
 [node name="UILayer" type="CanvasLayer"]
 
@@ -16,4 +17,7 @@ visible = false
 visible = false
 
 [node name="WinScreen" parent="." instance=ExtResource("4_635gd")]
+visible = false
+
+[node name="HTPScreen" parent="." instance=ExtResource("5_vt0sp")]
 visible = false

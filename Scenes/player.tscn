@@ -96,6 +96,8 @@ collision_mask = 4
 [node name="WaveCollider" type="CollisionShape2D" parent="WaveArea"]
 shape = SubResource("CircleShape2D_tqkfm")
 
+[node name="Sprite2D" type="Sprite2D" parent="WaveArea"]
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="WaveArea" to="." method="_on_wave_area_area_entered"]
 

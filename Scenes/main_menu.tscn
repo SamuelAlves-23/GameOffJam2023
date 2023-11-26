@@ -23,6 +23,56 @@ anchor_top = 1.0
 anchor_right = 0.5
 grow_vertical = 0
 
+[node name="AimLabel" parent="CanvasLayer/MainMenuUI" index="2"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = -108.0
+offset_right = 232.0
+offset_bottom = -85.0
+
+[node name="ShootLabel" parent="CanvasLayer/MainMenuUI" index="3"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = -88.0
+offset_right = 252.0
+offset_bottom = -65.0
+
+[node name="SizeLabel" parent="CanvasLayer/MainMenuUI" index="4"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = -68.0
+offset_right = 280.0
+offset_bottom = -45.0
+
+[node name="MoveLabel" parent="CanvasLayer/MainMenuUI" index="5"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = -48.0
+offset_right = 240.0
+offset_bottom = -25.0
+
+[node name="PauseLabel" parent="CanvasLayer/MainMenuUI" index="6"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = -28.0
+offset_right = 252.0
+offset_bottom = -4.99997
+
+[node name="MouseMovement" parent="CanvasLayer/MainMenuUI" index="7"]
+position = Vector2(177, -105)
+
+[node name="LeftClick" parent="CanvasLayer/MainMenuUI" index="8"]
+position = Vector2(177, -85)
+
+[node name="MouseWheel" parent="CanvasLayer/MainMenuUI" index="9"]
+position = Vector2(177, -65)
+
+[node name="Wasd" parent="CanvasLayer/MainMenuUI" index="10"]
+position = Vector2(177, -45)
+
+[node name="Space" parent="CanvasLayer/MainMenuUI" index="11"]
+position = Vector2(177, -25)
+
 [node name="TileMap" parent="." instance=ExtResource("2_cuwrv")]
 position = Vector2(0, 37)
 layer_0/tile_data = PackedInt32Array(917505, 262145, 3, 917506, 262145, 3, 917507, 262145, 3, 917508, 262145, 3, 917509, 262145, 3, 917510, 262145, 3, 917511, 262145, 3, 917512, 262145, 3, 917513, 262145, 3, 917514, 262145, 3, 917515, 262145, 3, 917516, 262145, 3, 917517, 262145, 3, 917518, 262145, 3, 917519, 262145, 3, 917520, 262145, 3, 917521, 262145, 3, 917522, 262145, 3, 917523, 262145, 3, 917524, 262145, 3, 917525, 262145, 3, 917526, 262145, 3, 917527, 262145, 3, 917528, 262145, 3, 917529, 262145, 3, 917530, 262145, 3, 917531, 262145, 3, 917532, 262145, 3, 917533, 327681, 3, 917504, 196609, 3)
@@ -71,3 +121,5 @@ texture = ExtResource("10_5dpp8")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_vqf62")
 autoplay = true
+
+[editable path="CanvasLayer/MainMenuUI"]

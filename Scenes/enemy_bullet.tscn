@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cq3klbh1ggot1" path="res://Assets/Sprites/Finished/enemy-bullet.png" id="2_bbavp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0gfyv"]
-radius = 3.0
-height = 10.0
+radius = 2.0
+height = 4.0
 
 [node name="EnemyBullet" type="Area2D"]
 z_index = 1

@@ -42,6 +42,42 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgg8m"]
+atlas = ExtResource("2_m1d31")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gams5"]
+atlas = ExtResource("2_m1d31")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1dsj"]
+atlas = ExtResource("2_m1d31")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr61u"]
+atlas = ExtResource("2_m1d31")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pw3ms"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgg8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gams5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1dsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr61u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkxd6"]
 size = Vector2(8, 14)
 
@@ -111,46 +147,10 @@ _data = {
 size = Vector2(6, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5m1i"]
-size = Vector2(13, 15)
+size = Vector2(13, 22.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34udr"]
 size = Vector2(25, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xgg8m"]
-atlas = ExtResource("2_m1d31")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gams5"]
-atlas = ExtResource("2_m1d31")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n1dsj"]
-atlas = ExtResource("2_m1d31")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gr61u"]
-atlas = ExtResource("2_m1d31")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pw3ms"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xgg8m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gams5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n1dsj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gr61u")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="ShieldEnemy" type="CharacterBody2D"]
 z_index = 1
@@ -167,6 +167,11 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_4p7ln")
 autoplay = "default"
 frame_progress = 0.201348
+
+[node name="GuardedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pw3ms")
+autoplay = "default"
+frame_progress = 0.189642
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -195,7 +200,7 @@ collision_layer = 32
 collision_mask = 9
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-0.5, -4.5)
+position = Vector2(0, 1.25)
 shape = SubResource("RectangleShape2D_s5m1i")
 
 [node name="Hitbox" parent="." instance=ExtResource("5_v2e36")]
@@ -205,11 +210,6 @@ collision_mask = 16
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-0.5, 9.5)
 shape = SubResource("RectangleShape2D_34udr")
-
-[node name="GuardedSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_pw3ms")
-autoplay = "default"
-frame_progress = 0.189642
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

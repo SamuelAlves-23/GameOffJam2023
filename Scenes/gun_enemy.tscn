@@ -52,7 +52,7 @@ _data = {
 size = Vector2(6, 3)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyi4m"]
-radius = 15.0
+radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e34bs"]
 radius = 15.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2tbpda0xg4dh"]
+[gd_scene load_steps=15 format=3 uid="uid://b2tbpda0xg4dh"]
 
 [ext_resource type="Script" path="res://Scripts/PauseScreen.gd" id="1_lfhss"]
 [ext_resource type="Texture2D" uid="uid://tbrxaonj2xd" path="res://Assets/Sprites/Finished/ResumeButton.png" id="2_gjpk2"]
@@ -7,6 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://dpsq21xusgkam" path="res://Assets/Sprites/Finished/RetryButton_pressed.png" id="3_lhwqt"]
 [ext_resource type="Texture2D" uid="uid://dlyfebvjoal3a" path="res://Assets/Sprites/Finished/TitleButton.png" id="4_hdvdc"]
 [ext_resource type="Texture2D" uid="uid://3ycfycx7y171" path="res://Assets/Sprites/Finished/TitleButton_pressed.png" id="5_b2agq"]
+[ext_resource type="FontFile" uid="uid://bhqchek0oi41q" path="res://Assets/Fonts/pixelart.ttf" id="10_kuef0"]
+[ext_resource type="Texture2D" uid="uid://fcovc1ovwm6s" path="res://Assets/Sprites/Finished/Mouse_movement.png" id="11_ejkee"]
+[ext_resource type="Texture2D" uid="uid://m8u0o8nyu0bx" path="res://Assets/Sprites/Finished/leftClick.png" id="12_apn4d"]
+[ext_resource type="Texture2D" uid="uid://fiolpayuxj4y" path="res://Assets/Sprites/Finished/space.png" id="13_koegp"]
+[ext_resource type="Texture2D" uid="uid://c5xos3m5s6nmn" path="res://Assets/Sprites/Finished/MouseWheel.png" id="13_t1wla"]
+[ext_resource type="Texture2D" uid="uid://cpn1oloes1quh" path="res://Assets/Sprites/Finished/wasd.png" id="14_1h4ep"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_loi2c"]
+font = ExtResource("10_kuef0")
 
 [node name="PauseScreen" type="Control"]
 layout_mode = 3
@@ -16,6 +25,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lfhss")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.454902, 0.454902, 0.454902, 0.505882)
 
 [node name="ResumeButton" type="TextureButton" parent="."]
 layout_mode = 1
@@ -64,6 +82,76 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("4_hdvdc")
 texture_pressed = ExtResource("5_b2agq")
+
+[node name="AimLabel" type="Label" parent="."]
+offset_left = 435.0
+offset_top = 167.0
+offset_right = 475.0
+offset_bottom = 190.0
+scale = Vector2(0.35, 0.35)
+text = "Aim"
+label_settings = SubResource("LabelSettings_loi2c")
+
+[node name="ShootLabel" type="Label" parent="."]
+offset_left = 435.0
+offset_top = 187.0
+offset_right = 495.0
+offset_bottom = 210.0
+scale = Vector2(0.35, 0.35)
+text = "Shoot"
+label_settings = SubResource("LabelSettings_loi2c")
+
+[node name="SizeLabel" type="Label" parent="."]
+offset_left = 435.0
+offset_top = 207.0
+offset_right = 523.0
+offset_bottom = 230.0
+scale = Vector2(0.35, 0.35)
+text = "Gun size"
+label_settings = SubResource("LabelSettings_loi2c")
+
+[node name="MoveLabel" type="Label" parent="."]
+offset_left = 435.0
+offset_top = 227.0
+offset_right = 483.0
+offset_bottom = 250.0
+scale = Vector2(0.35, 0.35)
+text = "Move"
+label_settings = SubResource("LabelSettings_loi2c")
+
+[node name="PauseLabel" type="Label" parent="."]
+offset_left = 435.0
+offset_top = 247.0
+offset_right = 495.0
+offset_bottom = 270.0
+scale = Vector2(0.35, 0.35)
+text = "Pause"
+label_settings = SubResource("LabelSettings_loi2c")
+
+[node name="MouseMovement" type="Sprite2D" parent="."]
+position = Vector2(420, 170)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_ejkee")
+
+[node name="LeftClick" type="Sprite2D" parent="."]
+position = Vector2(420, 190)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_apn4d")
+
+[node name="MouseWheel" type="Sprite2D" parent="."]
+position = Vector2(420, 210)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_t1wla")
+
+[node name="Wasd" type="Sprite2D" parent="."]
+position = Vector2(420, 230)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_1h4ep")
+
+[node name="Space" type="Sprite2D" parent="."]
+position = Vector2(420, 250)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_koegp")
 
 [connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]

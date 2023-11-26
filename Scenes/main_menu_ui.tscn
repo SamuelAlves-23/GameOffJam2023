@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds4cybt5yic6i"]
+[gd_scene load_steps=13 format=3 uid="uid://ds4cybt5yic6i"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenuUI.gd" id="1_tptk4"]
 [ext_resource type="Texture2D" uid="uid://4caqi6o7xylv" path="res://Assets/Sprites/Finished/Button.png" id="2_y5f21"]
 [ext_resource type="Texture2D" uid="uid://4d6j7cs4cyk6" path="res://Assets/Sprites/Finished/Button_pressed.png" id="3_dbd2a"]
 [ext_resource type="Texture2D" uid="uid://b0a8vtvr18epv" path="res://Assets/Sprites/Finished/ExitButton.png" id="4_usuul"]
 [ext_resource type="Texture2D" uid="uid://c7mr6kmoturfg" path="res://Assets/Sprites/Finished/ExitButton_pressed.png" id="5_53e3y"]
+[ext_resource type="FontFile" uid="uid://bhqchek0oi41q" path="res://Assets/Fonts/pixelart.ttf" id="6_aio7h"]
+[ext_resource type="Texture2D" uid="uid://fcovc1ovwm6s" path="res://Assets/Sprites/Finished/Mouse_movement.png" id="7_klf64"]
+[ext_resource type="Texture2D" uid="uid://m8u0o8nyu0bx" path="res://Assets/Sprites/Finished/leftClick.png" id="8_gcxi5"]
+[ext_resource type="Texture2D" uid="uid://c5xos3m5s6nmn" path="res://Assets/Sprites/Finished/MouseWheel.png" id="9_b7hlw"]
+[ext_resource type="Texture2D" uid="uid://cpn1oloes1quh" path="res://Assets/Sprites/Finished/wasd.png" id="10_1uj3x"]
+[ext_resource type="Texture2D" uid="uid://fiolpayuxj4y" path="res://Assets/Sprites/Finished/space.png" id="11_vghi5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_86yrs"]
+font = ExtResource("6_aio7h")
 
 [node name="MainMenuUI" type="Control"]
 layout_mode = 3
@@ -48,6 +57,76 @@ grow_vertical = 0
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("4_usuul")
 texture_pressed = ExtResource("5_53e3y")
+
+[node name="AimLabel" type="Label" parent="."]
+offset_left = 435.0
+offset_top = 167.0
+offset_right = 475.0
+offset_bottom = 190.0
+scale = Vector2(0.35, 0.35)
+text = "Aim"
+label_settings = SubResource("LabelSettings_86yrs")
+
+[node name="ShootLabel" type="Label" parent="."]
+offset_left = 435.0
+offset_top = 187.0
+offset_right = 495.0
+offset_bottom = 210.0
+scale = Vector2(0.35, 0.35)
+text = "Shoot"
+label_settings = SubResource("LabelSettings_86yrs")
+
+[node name="SizeLabel" type="Label" parent="."]
+offset_left = 435.0
+offset_top = 207.0
+offset_right = 523.0
+offset_bottom = 230.0
+scale = Vector2(0.35, 0.35)
+text = "Gun size"
+label_settings = SubResource("LabelSettings_86yrs")
+
+[node name="MoveLabel" type="Label" parent="."]
+offset_left = 435.0
+offset_top = 227.0
+offset_right = 483.0
+offset_bottom = 250.0
+scale = Vector2(0.35, 0.35)
+text = "Move"
+label_settings = SubResource("LabelSettings_86yrs")
+
+[node name="PauseLabel" type="Label" parent="."]
+offset_left = 435.0
+offset_top = 247.0
+offset_right = 495.0
+offset_bottom = 270.0
+scale = Vector2(0.35, 0.35)
+text = "Pause"
+label_settings = SubResource("LabelSettings_86yrs")
+
+[node name="MouseMovement" type="Sprite2D" parent="."]
+position = Vector2(420, 170)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_klf64")
+
+[node name="LeftClick" type="Sprite2D" parent="."]
+position = Vector2(420, 190)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_gcxi5")
+
+[node name="MouseWheel" type="Sprite2D" parent="."]
+position = Vector2(420, 210)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_b7hlw")
+
+[node name="Wasd" type="Sprite2D" parent="."]
+position = Vector2(420, 230)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_1uj3x")
+
+[node name="Space" type="Sprite2D" parent="."]
+position = Vector2(420, 250)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_vghi5")
 
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_button_up"]
 [connection signal="button_up" from="ExitButton" to="." method="_on_exit_button_button_up"]
